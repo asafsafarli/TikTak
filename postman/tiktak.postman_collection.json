@@ -1,0 +1,5607 @@
+{
+	"info": {
+		"_postman_id": "4665e9be-1712-49d7-bd73-58dceae64238",
+		"name": "Tiktak | E-commerce Api's | Stage 3-4 Final",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34865402",
+		"_collection_link": "https://warped-escape-49769.postman.co/workspace/Onlearn~7a11dc95-be64-4bb4-b579-db5727ec6ce0/collection/34865402-4665e9be-1712-49d7-bd73-58dceae64238?action=share&source=collection_link&creator=34865402"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"phone\": \"+994105554422\",\n    \"password\": \"Admin1234\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/auth/admin/login",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"auth",
+										"admin",
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "login",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"phone\": \"+994105554422\",\n    \"password\": \"Admin1234\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/auth/admin/login",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"auth",
+												"admin",
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "584"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"248-b1Lz6GFkZqeGwSsqEcGX2/0/7/Y\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 09:48:47 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Ok\",\n    \"data\": {\n        \"tokens\": {\n            \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Iis5OTQxMDU1NTQ0MjIiLCJzdWIiOjIsImlhdCI6MTc0OTcyMTcyNywiZXhwIjoxNzQ5NzY0OTI3fQ.MZwaJo0_2I3xQ5u_TFZZw3CBeFSG0VSrWnBzSsI6bjs\",\n            \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Iis5OTQxMDU1NTQ0MjIiLCJzdWIiOjIsImlhdCI6MTc0OTcyMTcyNywiZXhwIjoxNzQ5ODA4MTI3fQ.uXytzai0SrpA6RH_kM32JolZO7B3aQjJOHFum2Oo9a0\"\n        },\n        \"profile\": {\n            \"id\": 2,\n            \"full_name\": \"Tiktak Admin\",\n            \"phone\": \"+994105554422\",\n            \"address\": null,\n            \"img_url\": null,\n            \"role\": \"ADMIN\",\n            \"created_at\": \"2025-06-12T05:44:27.813Z\"\n        }\n    },\n    \"result\": true\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Profile",
+					"item": [
+						{
+							"name": "profile",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/admin/profile",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"admin",
+										"profile"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "profile",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/admin/profile",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"admin",
+												"profile"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "182"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"b6-L9YWsX/UA9BqIV6ZC1ZoW08TNVI\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 09:52:27 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Ok\",\n    \"data\": {\n        \"id\": 2,\n        \"full_name\": \"Tiktak Admin\",\n        \"phone\": \"+994105554422\",\n        \"address\": null,\n        \"img_url\": null,\n        \"role\": \"ADMIN\",\n        \"created_at\": \"2025-06-12T05:44:27.813Z\"\n    },\n    \"result\": true\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/admin/users",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"admin",
+										"users"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "list",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/admin/users",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"admin",
+												"users"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "257"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"101-GsceZ807xAKkN4tb2fWVgXqoruo\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 09:52:11 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Ok\",\n    \"data\": [\n        {\n            \"id\": 3,\n            \"full_name\": \"John Doe\",\n            \"phone\": \"+994516667766\",\n            \"address\": null,\n            \"img_url\": null,\n            \"role\": \"COMMERCE\",\n            \"password\": \"$2b$10$kh8thM3wx1FaiBPLkAivBu17usbcvgaDhlBPpO2D2gteGo0ZvgP/m\",\n            \"created_at\": \"2025-06-12T05:47:24.588Z\"\n        }\n    ],\n    \"result\": true\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Category",
+					"item": [
+						{
+							"name": "create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if(pm.response.code == 200){",
+											"    pm.environment.set(\"OTP_CODE\", pm.response.json().data.otp);",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Category-1\",\n    \"description\":\"Lorem\",\n    \"img_url\":\"\" /* OPTIONALY */\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/admin/category",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"admin",
+										"category"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "create",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"Category-1\",\n    \"description\":\"Lorem\",\n    \"img_url\":\"\" /* OPTIONALY */\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/admin/category",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"admin",
+												"category"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "142"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"8e-9WFR7RjZmCYpoOVakznuoiafgqg\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 10:09:48 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Ok\",\n    \"data\": {\n        \"name\": \"Category-1\",\n        \"img_url\": \"\",\n        \"description\": \"Lorem\",\n        \"id\": 11,\n        \"created_at\": \"2025-06-12T06:09:47.830Z\"\n    },\n    \"result\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "update",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if(pm.response.code == 200){",
+											"    pm.environment.set(\"OTP_CODE\", pm.response.json().data.otp);",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Category-1\",\n    \"description\":\"Lorem dsadas\",\n    \"img_url\":\"\" /* OPTIONALY */\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/admin/categories/11",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"admin",
+										"categories",
+										"11"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "update",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"Category-1\",\n    \"description\":\"Lorem dsadas\",\n    \"img_url\":\"\" /* OPTIONALY */\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/admin/categories/11",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"admin",
+												"categories",
+												"11"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "111"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"6f-jEkBnfGtRMiS9lLm3KmQWufmuU4\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 10:11:46 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Ok\",\n    \"data\": {\n        \"id\": \"11\",\n        \"name\": \"Category-1\",\n        \"description\": \"Lorem dsadas\",\n        \"img_url\": \"\"\n    },\n    \"result\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "remove",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/admin/categories/11",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"admin",
+										"categories",
+										"11"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "remove",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/admin/categories/11",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"admin",
+												"categories",
+												"11"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "60"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"3c-uCglFGfSYt4ESyWp0Ffvb9S1zr8\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 10:12:23 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Successfully removed\",\n    \"data\": null,\n    \"result\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/admin/categories",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"admin",
+										"categories"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "list",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/admin/categories",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"admin",
+												"categories"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "3026"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"bd2-Zzwwfo8102d29RLrgJBV3FFekN0\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 10:04:40 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Ok\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Elektronika\",\n            \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/elektronika.jpg\",\n            \"description\": \"Smartfonlar, laptoplar, televizorlar ve daha fazlasi.\",\n            \"created_at\": \"2025-06-12T05:37:56.753Z\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Moda\",\n            \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/moda.jpg\",\n            \"description\": \"En yeni kolleksiyalar, aksesuarlari ve kisisel bakim mehsullari.\",\n            \"created_at\": \"2025-06-12T05:37:56.753Z\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Ev ve Bahce\",\n            \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/ev_bahce.jpg\",\n            \"description\": \"Ev dekorasyon, mebel, bahce aksesuarlari ve daha fazlasi.\",\n            \"created_at\": \"2025-06-12T05:37:56.753Z\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Spor ve Aciq Hava\",\n            \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/spor.jpg\",\n            \"description\": \"Idman ekipmanlari, aciq hava feliyyetleri ve fitness mehsullari.\",\n            \"created_at\": \"2025-06-12T05:37:56.753Z\"\n        },\n        {\n            \"id\": 5,\n            \"name\": \"Kitab ve Kancalariya\",\n            \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/kitab.jpg\",\n            \"description\": \"Kitablar, tedris materiallari ve ofis kancalariyasi.\",\n            \"created_at\": \"2025-06-12T05:37:56.753Z\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"Oyuncaq ve Usaq\",\n            \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/oyuncaq.jpg\",\n            \"description\": \"Usaq oyuncaqlari, gelisim oyunlari ve ana-baba mehsullari.\",\n            \"created_at\": \"2025-06-12T05:37:56.753Z\"\n        },\n        {\n            \"id\": 7,\n            \"name\": \"Avtomobil\",\n            \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/avtomobil.jpg\",\n            \"description\": \"Avto aksesuarlari, ehtiyat hisseleri ve avtomobil bakim mehsullari.\",\n            \"created_at\": \"2025-06-12T05:37:56.753Z\"\n        },\n        {\n            \"id\": 8,\n            \"name\": \"Saglamliq ve Guzuluk\",\n            \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/saglamliq.jpg\",\n            \"description\": \"Kosmetika, parfumlar, saglamliq mehsullari ve vitamin takviyeleri.\",\n            \"created_at\": \"2025-06-12T05:37:56.753Z\"\n        },\n        {\n            \"id\": 9,\n            \"name\": \"Mutfaq ve Yemek\",\n            \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/mutfaq.jpg\",\n            \"description\": \"Mutfaq avadanliqlari, yemek hazirlanmasi ve qida mehsullari.\",\n            \"created_at\": \"2025-06-12T05:37:56.753Z\"\n        },\n        {\n            \"id\": 10,\n            \"name\": \"Hediyyeler\",\n            \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/hediyye.jpg\",\n            \"description\": \"Xususi gunler ucun hediyyeler, suvenirler ve dekorativ esyalar.\",\n            \"created_at\": \"2025-06-12T05:37:56.753Z\"\n        }\n    ],\n    \"result\": true\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Products",
+					"item": [
+						{
+							"name": "create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if(pm.response.code == 200){",
+											"    pm.environment.set(\"OTP_CODE\", pm.response.json().data.otp);",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Producty-3 Icki\",\n    \"description\":\"Lorem ipsum\",\n    \"price\":\"8.90\",\n    \"type\":\"litre\", /* Please check button. this is ENUM ProductMeasure*/\n    \"img_url\":\"\" /* OPTIONALY */,\n    \"category_id\":1\n}\n\n\n// export enum ProductMeasure {\n//   KG = 'kg',\n//   GR = 'gr',\n//   LITRE = 'litre',\n//   ML = 'ml',\n//   METER = 'meter',\n//   CM = 'cm',\n//   MM = 'mm',\n//   PIECE = 'piece',\n//   PACKET = 'packet',\n//   BOX = 'box',\n// }\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/admin/product",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"admin",
+										"product"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "create",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\": \"Producty-1\",\n    \"description\":\"Lorem ipsum\",\n    \"price\":\"12.90\",\n    \"type\":\"kg\", /* Please check button. this is ENUM ProductMeasure*/\n    \"img_url\":\"\" /* OPTIONALY */,\n    \"category_id\":1\n}\n\n\n// export enum ProductMeasure {\n//   KG = 'kg',\n//   GR = 'gr',\n//   LITRE = 'litre',\n//   ML = 'ml',\n//   METER = 'meter',\n//   CM = 'cm',\n//   MM = 'mm',\n//   PIECE = 'piece',\n//   PACKET = 'packet',\n//   BOX = 'box',\n// }\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/admin/product",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"admin",
+												"product"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "480"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"1e0-59If9BduyHLZrb9dYpL3hWLScDs\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 10:38:08 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Ok\",\n    \"data\": {\n        \"id\": 1,\n        \"title\": \"Producty-1\",\n        \"img_url\": \"\",\n        \"description\": \"Lorem ipsum\",\n        \"price\": \"12.90\",\n        \"type\": \"kg\",\n        \"created_at\": \"2025-06-12T06:38:08.292Z\",\n        \"category\": {\n            \"id\": 1,\n            \"name\": \"Elektronika\",\n            \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/elektronika.jpg\",\n            \"description\": \"Smartfonlar, laptoplar, televizorlar ve daha fazlasi.\",\n            \"created_at\": \"2025-06-12T05:37:56.753Z\"\n        }\n    },\n    \"result\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "update",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if(pm.response.code == 200){",
+											"    pm.environment.set(\"OTP_CODE\", pm.response.json().data.otp);",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Producty-2 Icki\",\n    \"description\":\"Lorem ipsumdsda\",\n    \"price\":\"12.90\",\n    \"type\":\"litre\", /* Please check button. this is ENUM ProductMeasure*/\n    \"img_url\":\"\" /* OPTIONALY */,\n    \"category_id\":1\n}\n\n\n// export enum ProductMeasure {\n//   KG = 'kg',\n//   GR = 'gr',\n//   LITRE = 'litre',\n//   ML = 'ml',\n//   METER = 'meter',\n//   CM = 'cm',\n//   MM = 'mm',\n//   PIECE = 'piece',\n//   PACKET = 'packet',\n//   BOX = 'box',\n// }\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/admin/products/2",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"admin",
+										"products",
+										"2"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "update",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\": \"Producty-2 Icki\",\n    \"description\":\"Lorem ipsumdsda\",\n    \"price\":\"12.90\",\n    \"type\":\"litre\", /* Please check button. this is ENUM ProductMeasure*/\n    \"img_url\":\"\" /* OPTIONALY */,\n    \"category_id\":1\n}\n\n\n// export enum ProductMeasure {\n//   KG = 'kg',\n//   GR = 'gr',\n//   LITRE = 'litre',\n//   ML = 'ml',\n//   METER = 'meter',\n//   CM = 'cm',\n//   MM = 'mm',\n//   PIECE = 'piece',\n//   PACKET = 'packet',\n//   BOX = 'box',\n// }\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/admin/products/2",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"admin",
+												"products",
+												"2"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "492"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"1ec-9tGm+RPOwfyH6iqvruvgaTyzMuE\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 10:47:31 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Ok\",\n    \"data\": {\n        \"id\": 2,\n        \"title\": \"Producty-2 Icki\",\n        \"img_url\": \"\",\n        \"description\": \"Lorem ipsumdsda\",\n        \"price\": \"12.90\",\n        \"type\": \"litre\",\n        \"created_at\": \"2025-06-12T06:46:25.117Z\",\n        \"category\": {\n            \"id\": 1,\n            \"name\": \"Elektronika\",\n            \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/elektronika.jpg\",\n            \"description\": \"Smartfonlar, laptoplar, televizorlar ve daha fazlasi.\",\n            \"created_at\": \"2025-06-12T05:37:56.753Z\"\n        }\n    },\n    \"result\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "remove",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/admin/products/2",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"admin",
+										"products",
+										"2"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "remove",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/admin/products/2",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"admin",
+												"products",
+												"2"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "60"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"3c-uCglFGfSYt4ESyWp0Ffvb9S1zr8\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 10:48:45 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Successfully removed\",\n    \"data\": null,\n    \"result\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/admin/products",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"admin",
+										"products"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "5",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "search",
+											"value": null,
+											"description": "product title and desc, price",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "list",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/admin/products",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"admin",
+												"products"
+											],
+											"query": [
+												{
+													"key": "limit",
+													"value": "5",
+													"disabled": true
+												},
+												{
+													"key": "page",
+													"value": "1",
+													"disabled": true
+												},
+												{
+													"key": "search",
+													"value": null,
+													"description": "product title and desc, price",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "483"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"1e3-LMXhPaxL2x5EUJPFpm9l0W/vKAw\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 10:55:12 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Ok\",\n    \"data\": [\n        {\n            \"id\": 3,\n            \"title\": \"Producty-2 Icki\",\n            \"img_url\": \"\",\n            \"description\": \"Lorem ipsum\",\n            \"price\": \"12.90\",\n            \"type\": \"litre\",\n            \"created_at\": \"2025-06-12T06:49:09.440Z\",\n            \"category\": {\n                \"id\": 1,\n                \"name\": \"Elektronika\"\n            }\n        },\n        {\n            \"id\": 1,\n            \"title\": \"Producty-1\",\n            \"img_url\": \"\",\n            \"description\": \"Lorem ipsum\",\n            \"price\": \"12.90\",\n            \"type\": \"kg\",\n            \"created_at\": \"2025-06-12T06:38:08.292Z\",\n            \"category\": {\n                \"id\": 1,\n                \"name\": \"Elektronika\"\n            }\n        }\n    ],\n    \"pagination\": {\n        \"next\": null,\n        \"prev\": null,\n        \"current\": 1,\n        \"total\": 2,\n        \"totalPages\": 1\n    },\n    \"result\": true\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Campaign",
+					"item": [
+						{
+							"name": "create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if(pm.response.code == 200){",
+											"    pm.environment.set(\"OTP_CODE\", pm.response.json().data.otp);",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Campaign-1\",\n    \"description\":\"Lorem\",\n    \"img_url\":\"\" /* OPTIONALY */\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/admin/campaign",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"admin",
+										"campaign"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "create",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\": \"Campaign-1\",\n    \"description\":\"Lorem\",\n    \"img_url\":\"\" /* OPTIONALY */\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/admin/campaign",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"admin",
+												"campaign"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "142"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"8e-E+Qwiz0y05/xpD6rgDh6mS44XFw\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 10:19:04 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Ok\",\n    \"data\": {\n        \"title\": \"Campaign-1\",\n        \"description\": \"Lorem\",\n        \"img_url\": \"\",\n        \"id\": 9,\n        \"created_at\": \"2025-06-12T06:19:04.262Z\"\n    },\n    \"result\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "update",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if(pm.response.code == 200){",
+											"    pm.environment.set(\"OTP_CODE\", pm.response.json().data.otp);",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Campaign-1\",\n    \"description\":\"Lorem dsda\",\n    \"img_url\":\"\" /* OPTIONALY */\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/admin/campaigns/9",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"admin",
+										"campaigns",
+										"9"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "update",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\": \"Campaign-1\",\n    \"description\":\"Lorem dsda\",\n    \"img_url\":\"\" /* OPTIONALY */\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/admin/campaigns/9",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"admin",
+												"campaigns",
+												"9"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "109"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"6d-OF6fNwMXW3XSnwRyE3rhHqdQv9g\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 10:19:25 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Ok\",\n    \"data\": {\n        \"id\": \"9\",\n        \"title\": \"Campaign-1\",\n        \"description\": \"Lorem dsda\",\n        \"img_url\": \"\"\n    },\n    \"result\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "remove",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/admin/campaigns/9",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"admin",
+										"campaigns",
+										"9"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "remove",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/admin/campaigns/9",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"admin",
+												"campaigns",
+												"9"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "60"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"3c-uCglFGfSYt4ESyWp0Ffvb9S1zr8\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 10:19:40 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Successfully removed\",\n    \"data\": null,\n    \"result\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/admin/campaigns",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"admin",
+										"campaigns"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "list",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/admin/campaigns",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"admin",
+												"campaigns"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "586"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"24a-B6Ta/YY5keq2e6hg5IAO8M1db7M\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 10:18:03 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Ok\",\n    \"data\": [\n        {\n            \"id\": 3,\n            \"title\": \"Tiktak yenilik\",\n            \"description\": null,\n            \"img_url\": null,\n            \"created_at\": \"2025-06-12T05:40:42.843Z\"\n        },\n        {\n            \"id\": 4,\n            \"title\": \"Yaz kampanyasi\",\n            \"description\": null,\n            \"img_url\": null,\n            \"created_at\": \"2025-06-12T05:40:42.843Z\"\n        },\n        {\n            \"id\": 5,\n            \"title\": \"Yilbasi kampanyasi\",\n            \"description\": null,\n            \"img_url\": null,\n            \"created_at\": \"2025-06-12T05:40:42.843Z\"\n        },\n        {\n            \"id\": 6,\n            \"title\": \"Teknoloji Festivali\",\n            \"description\": null,\n            \"img_url\": null,\n            \"created_at\": \"2025-06-12T05:40:42.843Z\"\n        },\n        {\n            \"id\": 7,\n            \"title\": \"Moda Heftesi\",\n            \"description\": null,\n            \"img_url\": null,\n            \"created_at\": \"2025-06-12T05:40:42.843Z\"\n        }\n    ],\n    \"result\": true\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Orders",
+					"item": [
+						{
+							"name": "list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if(pm.response.code == 200){",
+											"    pm.environment.set(\"OTP_CODE\", pm.response.json().data.otp);",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"basket_id\": 1,\n    \"payment\":\"CARD\" /* Enum CASH CARD */,\n    \"note\":\"Lorem ipsum\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/orders/admin",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"orders",
+										"admin"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "list",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"basket_id\": 1,\n    \"payment\":\"CARD\" /* Enum CASH CARD */,\n    \"note\":\"Lorem ipsum\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/orders/admin",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"orders",
+												"admin"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "935"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"3a7-Gv9syT1kqGv/AhMOLKnp52Tt8lI\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 13 Jun 2025 12:26:55 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Ok\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"orderNumber\": \"ORD-20250613-630\",\n            \"total\": \"18.89\",\n            \"deliveryFee\": \"0.00\",\n            \"paymentMethod\": \"CARD\",\n            \"status\": \"PENDING\",\n            \"note\": \"Lorem ipsum\",\n            \"address\": \"Aga Neymatulla\",\n            \"phone\": \"+994103193897\",\n            \"createdAt\": \"2025-06-13T07:35:41.867Z\",\n            \"updatedAt\": \"2025-06-13T07:35:41.867Z\",\n            \"user\": {\n                \"id\": 3,\n                \"full_name\": \"John Doe\",\n                \"img_url\": \"https://avatars.githubusercontent.com/u/61918721?v=4?s=400\"\n            },\n            \"items\": [\n                {\n                    \"id\": 1,\n                    \"quantity\": 1,\n                    \"total_price\": \"12.90\",\n                    \"product\": {\n                        \"id\": 5,\n                        \"title\": \"Producty-2 Icki\",\n                        \"img_url\": \"\",\n                        \"description\": \"Lorem ipsum\",\n                        \"price\": \"12.90\",\n                        \"type\": \"litre\",\n                        \"created_at\": \"2025-06-13T04:54:05.529Z\",\n                        \"category\": {\n                            \"id\": 1,\n                            \"name\": \"Elektronika\",\n                            \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/elektronika.jpg\",\n                            \"description\": \"Smartfonlar, laptoplar, televizorlar ve daha fazlasi.\",\n                            \"created_at\": \"2025-06-12T05:37:56.753Z\"\n                        }\n                    }\n                }\n            ]\n        }\n    ],\n    \"result\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "stats",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if(pm.response.code == 200){",
+											"    pm.environment.set(\"OTP_CODE\", pm.response.json().data.otp);",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"basket_id\": 1,\n    \"payment\":\"CARD\" /* Enum CASH CARD */,\n    \"note\":\"Lorem ipsum\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/orders/admin",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"orders",
+										"admin"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"basket_id\": 1,\n    \"payment\":\"CARD\" /* Enum CASH CARD */,\n    \"note\":\"Lorem ipsum\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/orders/admin/stats",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"orders",
+												"admin",
+												"stats"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "69"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"45-+rO91jnAdfVAn4nktLLsrBWsWW4\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 13 Jun 2025 12:37:47 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"TOTAL\": 1,\n    \"DELIVERED\": 0,\n    \"PENDING\": 0,\n    \"PREPARING\": 1,\n    \"TOTAL_REVENUE\": 0\n}"
+								}
+							]
+						},
+						{
+							"name": "update status",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if(pm.response.code == 200){",
+											"    pm.environment.set(\"OTP_CODE\", pm.response.json().data.otp);",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"status\":\"PREPARING\"\n}\n\n\n// export enum OrderStatus {\n//   PENDING = 'PENDING',\n//   CONFIRMED = 'CONFIRMED',\n//   PREPARING = 'PREPARING',\n//   READY = 'READY',\n//   DELIVERED = 'DELIVERED',\n//   CANCELLED = 'CANCELLED',\n// }\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/orders/admin/1/status",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"orders",
+										"admin",
+										"1",
+										"status"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "upt",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"status\":\"PREPARING\"\n}\n\n\n// export enum OrderStatus {\n//   PENDING = 'PENDING',\n//   CONFIRMED = 'CONFIRMED',\n//   PREPARING = 'PREPARING',\n//   READY = 'READY',\n//   DELIVERED = 'DELIVERED',\n//   CANCELLED = 'CANCELLED',\n// }\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/orders/admin/1/status",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"orders",
+												"admin",
+												"1",
+												"status"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "849"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"351-T64k39HTppWYMw63T4Duft8fy1A\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 13 Jun 2025 12:30:46 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Order created successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"orderNumber\": \"ORD-20250613-630\",\n        \"total\": \"18.89\",\n        \"deliveryFee\": \"0.00\",\n        \"paymentMethod\": \"CARD\",\n        \"status\": \"PREPARING\",\n        \"note\": \"Lorem ipsum\",\n        \"address\": \"Aga Neymatulla\",\n        \"phone\": \"+994103193897\",\n        \"createdAt\": \"2025-06-13T07:35:41.867Z\",\n        \"updatedAt\": \"2025-06-13T08:28:33.583Z\",\n        \"items\": [\n            {\n                \"id\": 1,\n                \"quantity\": 1,\n                \"total_price\": \"12.90\",\n                \"product\": {\n                    \"id\": 5,\n                    \"title\": \"Producty-2 Icki\",\n                    \"img_url\": \"\",\n                    \"description\": \"Lorem ipsum\",\n                    \"price\": \"12.90\",\n                    \"type\": \"litre\",\n                    \"created_at\": \"2025-06-13T04:54:05.529Z\",\n                    \"category\": {\n                        \"id\": 1,\n                        \"name\": \"Elektronika\",\n                        \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/elektronika.jpg\",\n                        \"description\": \"Smartfonlar, laptoplar, televizorlar ve daha fazlasi.\",\n                        \"created_at\": \"2025-06-12T05:37:56.753Z\"\n                    }\n                }\n            }\n        ]\n    },\n    \"result\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "stats",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if(pm.response.code == 200){",
+											"    pm.environment.set(\"OTP_CODE\", pm.response.json().data.otp);",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"basket_id\": 1,\n    \"payment\":\"CARD\" /* Enum CASH CARD */,\n    \"note\":\"Lorem ipsum\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/orders/admin",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"orders",
+										"admin"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"basket_id\": 1,\n    \"payment\":\"CARD\" /* Enum CASH CARD */,\n    \"note\":\"Lorem ipsum\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/orders/admin/stats",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"orders",
+												"admin",
+												"stats"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "69"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"45-+rO91jnAdfVAn4nktLLsrBWsWW4\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 13 Jun 2025 12:37:47 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"TOTAL\": 1,\n    \"DELIVERED\": 0,\n    \"PENDING\": 0,\n    \"PREPARING\": 1,\n    \"TOTAL_REVENUE\": 0\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if(pm.response.code == 200){",
+											"    pm.environment.set(\"OTP_CODE\", pm.response.json().data.otp);",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"phone\": \"+994516667766\",\n    \"password\": \"12345\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/auth/login",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "login",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"phone\": \"+994516667766\",\n    \"password\": \"1234\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/auth/login",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"auth",
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "583"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"247-FNL+Q6lFOUwA6nZzGs+rjsBqNgY\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 09:47:59 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Ok\",\n    \"data\": {\n        \"tokens\": {\n            \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Iis5OTQ1MTY2Njc3NjYiLCJzdWIiOjMsImlhdCI6MTc0OTcyMTY3OSwiZXhwIjoxNzQ5NzY0ODc5fQ.QS98eE6vIWdhgj8Ds1qf0kfoyZRoLIhZvWK8TPA1YbI\",\n            \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Iis5OTQ1MTY2Njc3NjYiLCJzdWIiOjMsImlhdCI6MTc0OTcyMTY3OSwiZXhwIjoxNzQ5ODA4MDc5fQ.k_Q6-UYkZWa2xp06ZN6l6KzLKhjHegK7bZPOixS5zcU\"\n        },\n        \"profile\": {\n            \"id\": 3,\n            \"full_name\": \"John Doe\",\n            \"phone\": \"+994516667766\",\n            \"address\": null,\n            \"img_url\": null,\n            \"role\": \"COMMERCE\",\n            \"created_at\": \"2025-06-12T05:47:24.588Z\"\n        }\n    },\n    \"result\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "signup",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"password\":\"1234\",\n  \"full_name\":\"John Doe\",\n  \"phone\":\"+994516667766\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/auth/signup",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"auth",
+										"signup"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "signup",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"password\":\"1234\",\n  \"full_name\":\"John Doe\",\n  \"phone\":\"+994516667766\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/auth/signup",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"auth",
+												"signup"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "63"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"3f-wDoZhDweu/EBmDpf72a/Jhv+KA8\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 09:47:24 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Successfully registered\",\n    \"data\": null,\n    \"result\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "refresh",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"refresh_token\":\"{{REFRESH_TOKEN}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/auth/refresh",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"auth",
+										"refresh"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"refresh_token\":\"{{REFRESH_TOKEN}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/auth/refresh",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"auth",
+												"refresh"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "418"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"1a2-ZSMA+btHcuN/3QB17IL23IOx4n0\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 10:14:40 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Ok\",\n    \"data\": {\n        \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Iis5OTQxMDU1NTQ0MjIiLCJzdWIiOjIsImlhdCI6MTc0OTcyMzI4MCwiZXhwIjoxNzQ5NzY2NDgwfQ.A8MRmax-J5n20a2_2xMPetQTWKX0-NUordGaQYkF1U0\",\n        \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Iis5OTQxMDU1NTQ0MjIiLCJzdWIiOjIsImlhdCI6MTc0OTcyMzI4MCwiZXhwIjoxNzQ5ODA5NjgwfQ.91vbJDglJUD-KJ1ba8DZ49TM2EX6ElZnUcbID0j45DA\"\n    },\n    \"result\": true\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Profile",
+					"item": [
+						{
+							"name": "profile",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/profile",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"profile"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "profile",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/profile",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"profile"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "181"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"b5-hpDuQJNVYlzfMjnXAa89ZdiAGx4\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 10:22:32 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Ok\",\n    \"data\": {\n        \"id\": 3,\n        \"full_name\": \"John Doe\",\n        \"phone\": \"+994516667766\",\n        \"address\": null,\n        \"img_url\": null,\n        \"role\": \"COMMERCE\",\n        \"created_at\": \"2025-06-12T05:47:24.588Z\"\n    },\n    \"result\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "profile",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"full_name\": \"John Doe\",\n    \"img_url\": \"https://avatars.githubusercontent.com/u/61918721?v=4?s=400\",\n    // \"password\": \"12345\", /*OPTIONAL - When change your password */\n    // \"password_repeat\": \"12345\",  /*OPTIONAL - When change your password */\n    \"address\": \"Aga Neymatulla 80\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/profile",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"profile"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "profile",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"full_name\": \"John Doe\",\n    \"img_url\": \"https://avatars.githubusercontent.com/u/61918721?v=4?s=400\",\n    // \"password\": \"12345\", /*OPTIONAL - When change your password */\n    // \"password_repeat\": \"12345\",  /*OPTIONAL - When change your password */\n    \"address\": \"Aga Neymatulla 80\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/profile",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"profile"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "252"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"fc-GzoRpk2NNn1D8Lfwo9tDnZxnhMA\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 10:28:34 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Ok\",\n    \"data\": {\n        \"id\": 3,\n        \"full_name\": \"John Doe\",\n        \"phone\": \"+994516667766\",\n        \"address\": \"Aga Neymatulla 80\",\n        \"img_url\": \"https://avatars.githubusercontent.com/u/61918721?v=4?s=400\",\n        \"role\": \"COMMERCE\",\n        \"created_at\": \"2025-06-12T05:47:24.588Z\"\n    },\n    \"result\": true\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Products",
+					"item": [
+						{
+							"name": "Favorites",
+							"item": [
+								{
+									"name": "favorite",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{ACCESS_TOKEN}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/products/1/favorite",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"products",
+												"1",
+												"favorite"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "add",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{BASE_URL}}/api/tiktak/products/1/favorite",
+													"host": [
+														"{{BASE_URL}}"
+													],
+													"path": [
+														"api",
+														"tiktak",
+														"products",
+														"1",
+														"favorite"
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Vary",
+													"value": "Origin"
+												},
+												{
+													"key": "Access-Control-Allow-Credentials",
+													"value": "true"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "68"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"44-haFcvrsSqjMMZp3+xNXqixa//jM\""
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 12 Jun 2025 11:05:28 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"Successfully added favorites\",\n    \"data\": null,\n    \"result\": true\n}"
+										},
+										{
+											"name": "remove",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{BASE_URL}}/api/tiktak/products/1/favorite",
+													"host": [
+														"{{BASE_URL}}"
+													],
+													"path": [
+														"api",
+														"tiktak",
+														"products",
+														"1",
+														"favorite"
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Vary",
+													"value": "Origin"
+												},
+												{
+													"key": "Access-Control-Allow-Credentials",
+													"value": "true"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "70"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"46-ClKROD1XvXrWCJ443uhZmwnFGcU\""
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 12 Jun 2025 11:05:47 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"Successfully removed favorites\",\n    \"data\": null,\n    \"result\": true\n}"
+										}
+									]
+								},
+								{
+									"name": "favorites",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{ACCESS_TOKEN}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/products/favorites",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"products",
+												"favorites"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "favorites",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{BASE_URL}}/api/tiktak/products/favorites",
+													"host": [
+														"{{BASE_URL}}"
+													],
+													"path": [
+														"api",
+														"tiktak",
+														"products",
+														"favorites"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Vary",
+													"value": "Origin"
+												},
+												{
+													"key": "Access-Control-Allow-Credentials",
+													"value": "true"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "482"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"1e2-LOJ0+4D24cmOEf/m2u7BmNNpLzQ\""
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 12 Jun 2025 11:03:15 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"Ok\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"title\": \"Producty-1\",\n            \"img_url\": \"\",\n            \"description\": \"Lorem ipsum\",\n            \"price\": \"12.90\",\n            \"type\": \"kg\",\n            \"created_at\": \"2025-06-12T06:38:08.292Z\",\n            \"category\": {\n                \"id\": 1,\n                \"name\": \"Elektronika\",\n                \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/elektronika.jpg\",\n                \"description\": \"Smartfonlar, laptoplar, televizorlar ve daha fazlasi.\",\n                \"created_at\": \"2025-06-12T05:37:56.753Z\"\n            }\n        }\n    ],\n    \"result\": true\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Basket",
+							"item": [
+								{
+									"name": "list",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{ACCESS_TOKEN}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/basket",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"basket"
+											],
+											"query": [
+												{
+													"key": "limit",
+													"value": "5",
+													"disabled": true
+												},
+												{
+													"key": "page",
+													"value": "1",
+													"disabled": true
+												},
+												{
+													"key": "search",
+													"value": "",
+													"description": "product title and desc, price",
+													"disabled": true
+												},
+												{
+													"key": "category_id",
+													"value": "1",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "empty",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept-Language",
+														"value": "{{LANG}}"
+													}
+												],
+												"url": {
+													"raw": "{{BASE_URL}}/api/tiktak/basket",
+													"host": [
+														"{{BASE_URL}}"
+													],
+													"path": [
+														"api",
+														"tiktak",
+														"basket"
+													],
+													"query": [
+														{
+															"key": "limit",
+															"value": "5",
+															"disabled": true
+														},
+														{
+															"key": "page",
+															"value": "1",
+															"disabled": true
+														},
+														{
+															"key": "search",
+															"value": "",
+															"description": "product title and desc, price",
+															"disabled": true
+														},
+														{
+															"key": "category_id",
+															"value": "1",
+															"disabled": true
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Vary",
+													"value": "Origin"
+												},
+												{
+													"key": "Access-Control-Allow-Credentials",
+													"value": "true"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "37"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"25-UuSJ0bGEbabuVdaXMblggO6Krzk\""
+												},
+												{
+													"key": "Date",
+													"value": "Fri, 13 Jun 2025 08:44:53 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"items\": [],\n    \"total\": \"0.00\",\n    \"count\": 0\n}"
+										},
+										{
+											"name": "list",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept-Language",
+														"value": "{{LANG}}"
+													}
+												],
+												"url": {
+													"raw": "{{BASE_URL}}/api/tiktak/basket",
+													"host": [
+														"{{BASE_URL}}"
+													],
+													"path": [
+														"api",
+														"tiktak",
+														"basket"
+													],
+													"query": [
+														{
+															"key": "limit",
+															"value": "5",
+															"disabled": true
+														},
+														{
+															"key": "page",
+															"value": "1",
+															"disabled": true
+														},
+														{
+															"key": "search",
+															"value": "",
+															"description": "product title and desc, price",
+															"disabled": true
+														},
+														{
+															"key": "category_id",
+															"value": "1",
+															"disabled": true
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Vary",
+													"value": "Origin"
+												},
+												{
+													"key": "Access-Control-Allow-Credentials",
+													"value": "true"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "580"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"244-3GmKNUPgZvWSsf0kokHDfqBnhxk\""
+												},
+												{
+													"key": "Date",
+													"value": "Fri, 13 Jun 2025 09:31:20 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"Ok\",\n    \"data\": {\n        \"items\": [\n            {\n                \"id\": 8,\n                \"quantity\": 1,\n                \"total_price\": \"12.90\",\n                \"product\": {\n                    \"id\": 5,\n                    \"title\": \"Producty-2 Icki\",\n                    \"img_url\": \"\",\n                    \"description\": \"Lorem ipsum\",\n                    \"price\": \"12.90\",\n                    \"type\": \"litre\",\n                    \"created_at\": \"2025-06-13T04:54:05.529Z\",\n                    \"category\": {\n                        \"id\": 1,\n                        \"name\": \"Elektronika\",\n                        \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/elektronika.jpg\",\n                        \"description\": \"Smartfonlar, laptoplar, televizorlar ve daha fazlasi.\",\n                        \"created_at\": \"2025-06-12T05:37:56.753Z\"\n                    }\n                }\n            }\n        ],\n        \"total\": \"12.90\",\n        \"count\": 1\n    },\n    \"result\": true\n}"
+										}
+									]
+								},
+								{
+									"name": "clear",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{ACCESS_TOKEN}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/basket/clear",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"basket",
+												"clear"
+											],
+											"query": [
+												{
+													"key": "limit",
+													"value": "5",
+													"disabled": true
+												},
+												{
+													"key": "page",
+													"value": "1",
+													"disabled": true
+												},
+												{
+													"key": "search",
+													"value": "",
+													"description": "product title and desc, price",
+													"disabled": true
+												},
+												{
+													"key": "category_id",
+													"value": "1",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "clear",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept-Language",
+														"value": "{{LANG}}"
+													}
+												],
+												"url": {
+													"raw": "{{BASE_URL}}/api/tiktak/basket/clear",
+													"host": [
+														"{{BASE_URL}}"
+													],
+													"path": [
+														"api",
+														"tiktak",
+														"basket",
+														"clear"
+													],
+													"query": [
+														{
+															"key": "limit",
+															"value": "5",
+															"disabled": true
+														},
+														{
+															"key": "page",
+															"value": "1",
+															"disabled": true
+														},
+														{
+															"key": "search",
+															"value": "",
+															"description": "product title and desc, price",
+															"disabled": true
+														},
+														{
+															"key": "category_id",
+															"value": "1",
+															"disabled": true
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Vary",
+													"value": "Origin"
+												},
+												{
+													"key": "Access-Control-Allow-Credentials",
+													"value": "true"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "75"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"4b-e/QFVUfg7bxbLDmsbbDed8ML2io\""
+												},
+												{
+													"key": "Date",
+													"value": "Fri, 13 Jun 2025 09:17:07 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"Ok\",\n    \"data\": {\n        \"items\": [],\n        \"total\": \"0.00\",\n        \"count\": 0\n    },\n    \"result\": true\n}"
+										}
+									]
+								},
+								{
+									"name": "remove",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{ACCESS_TOKEN}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/basket/6/remove",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"basket",
+												"6",
+												"remove"
+											],
+											"query": [
+												{
+													"key": "limit",
+													"value": "5",
+													"disabled": true
+												},
+												{
+													"key": "page",
+													"value": "1",
+													"disabled": true
+												},
+												{
+													"key": "search",
+													"value": "",
+													"description": "product title and desc, price",
+													"disabled": true
+												},
+												{
+													"key": "category_id",
+													"value": "1",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "remove",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Accept-Language",
+														"value": "{{LANG}}"
+													}
+												],
+												"url": {
+													"raw": "{{BASE_URL}}/api/tiktak/basket/5/remove",
+													"host": [
+														"{{BASE_URL}}"
+													],
+													"path": [
+														"api",
+														"tiktak",
+														"basket",
+														"5",
+														"remove"
+													],
+													"query": [
+														{
+															"key": "limit",
+															"value": "5",
+															"disabled": true
+														},
+														{
+															"key": "page",
+															"value": "1",
+															"disabled": true
+														},
+														{
+															"key": "search",
+															"value": "",
+															"description": "product title and desc, price",
+															"disabled": true
+														},
+														{
+															"key": "category_id",
+															"value": "1",
+															"disabled": true
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Vary",
+													"value": "Origin"
+												},
+												{
+													"key": "Access-Control-Allow-Credentials",
+													"value": "true"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "1084"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"43c-XUIGGjklFJjM5BXgHLOHWL+OpcM\""
+												},
+												{
+													"key": "Date",
+													"value": "Fri, 13 Jun 2025 09:11:39 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"Ok\",\n    \"data\": {\n        \"items\": [\n            {\n                \"id\": 2,\n                \"quantity\": 5,\n                \"total_price\": \"64.50\",\n                \"product\": {\n                    \"id\": 5,\n                    \"title\": \"Producty-2 Icki\",\n                    \"img_url\": \"\",\n                    \"description\": \"Lorem ipsum\",\n                    \"price\": \"12.90\",\n                    \"type\": \"litre\",\n                    \"created_at\": \"2025-06-13T04:54:05.529Z\",\n                    \"category\": {\n                        \"id\": 1,\n                        \"name\": \"Elektronika\",\n                        \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/elektronika.jpg\",\n                        \"description\": \"Smartfonlar, laptoplar, televizorlar ve daha fazlasi.\",\n                        \"created_at\": \"2025-06-12T05:37:56.753Z\"\n                    }\n                }\n            },\n            {\n                \"id\": 3,\n                \"quantity\": 2,\n                \"total_price\": \"17.80\",\n                \"product\": {\n                    \"id\": 6,\n                    \"title\": \"Producty-3 Icki\",\n                    \"img_url\": \"\",\n                    \"description\": \"Lorem ipsum\",\n                    \"price\": \"8.90\",\n                    \"type\": \"litre\",\n                    \"created_at\": \"2025-06-13T04:54:30.963Z\",\n                    \"category\": {\n                        \"id\": 1,\n                        \"name\": \"Elektronika\",\n                        \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/elektronika.jpg\",\n                        \"description\": \"Smartfonlar, laptoplar, televizorlar ve daha fazlasi.\",\n                        \"created_at\": \"2025-06-12T05:37:56.753Z\"\n                    }\n                }\n            }\n        ],\n        \"total\": \"82.30\",\n        \"count\": 7\n    },\n    \"result\": true\n}"
+										}
+									]
+								},
+								{
+									"name": "remove all product",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{ACCESS_TOKEN}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/basket/5/remove-all",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"basket",
+												"5",
+												"remove-all"
+											],
+											"query": [
+												{
+													"key": "limit",
+													"value": "5",
+													"disabled": true
+												},
+												{
+													"key": "page",
+													"value": "1",
+													"disabled": true
+												},
+												{
+													"key": "search",
+													"value": "",
+													"description": "product title and desc, price",
+													"disabled": true
+												},
+												{
+													"key": "category_id",
+													"value": "1",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "remove product from basket with all quantity",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept-Language",
+														"value": "{{LANG}}"
+													}
+												],
+												"url": {
+													"raw": "{{BASE_URL}}/api/tiktak/basket/5/remove-all",
+													"host": [
+														"{{BASE_URL}}"
+													],
+													"path": [
+														"api",
+														"tiktak",
+														"basket",
+														"5",
+														"remove-all"
+													],
+													"query": [
+														{
+															"key": "limit",
+															"value": "5",
+															"disabled": true
+														},
+														{
+															"key": "page",
+															"value": "1",
+															"disabled": true
+														},
+														{
+															"key": "search",
+															"value": "",
+															"description": "product title and desc, price",
+															"disabled": true
+														},
+														{
+															"key": "category_id",
+															"value": "1",
+															"disabled": true
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Vary",
+													"value": "Origin"
+												},
+												{
+													"key": "Access-Control-Allow-Credentials",
+													"value": "true"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "579"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"243-e775xYsH8M8GWD58Vt5MMKL6phQ\""
+												},
+												{
+													"key": "Date",
+													"value": "Fri, 13 Jun 2025 09:16:58 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"Ok\",\n    \"data\": {\n        \"items\": [\n            {\n                \"id\": 6,\n                \"quantity\": 2,\n                \"total_price\": \"17.80\",\n                \"product\": {\n                    \"id\": 6,\n                    \"title\": \"Producty-3 Icki\",\n                    \"img_url\": \"\",\n                    \"description\": \"Lorem ipsum\",\n                    \"price\": \"8.90\",\n                    \"type\": \"litre\",\n                    \"created_at\": \"2025-06-13T04:54:30.963Z\",\n                    \"category\": {\n                        \"id\": 1,\n                        \"name\": \"Elektronika\",\n                        \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/elektronika.jpg\",\n                        \"description\": \"Smartfonlar, laptoplar, televizorlar ve daha fazlasi.\",\n                        \"created_at\": \"2025-06-12T05:37:56.753Z\"\n                    }\n                }\n            }\n        ],\n        \"total\": \"17.80\",\n        \"count\": 2\n    },\n    \"result\": true\n}"
+										}
+									]
+								},
+								{
+									"name": "add",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{ACCESS_TOKEN}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/basket/5/add",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"basket",
+												"5",
+												"add"
+											],
+											"query": [
+												{
+													"key": "limit",
+													"value": "5",
+													"disabled": true
+												},
+												{
+													"key": "page",
+													"value": "1",
+													"disabled": true
+												},
+												{
+													"key": "search",
+													"value": "",
+													"description": "product title and desc, price",
+													"disabled": true
+												},
+												{
+													"key": "category_id",
+													"value": "1",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "add",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Accept-Language",
+														"value": "{{LANG}}"
+													}
+												],
+												"url": {
+													"raw": "{{BASE_URL}}/api/tiktak/basket/6/add",
+													"host": [
+														"{{BASE_URL}}"
+													],
+													"path": [
+														"api",
+														"tiktak",
+														"basket",
+														"6",
+														"add"
+													],
+													"query": [
+														{
+															"key": "limit",
+															"value": "5",
+															"disabled": true
+														},
+														{
+															"key": "page",
+															"value": "1",
+															"disabled": true
+														},
+														{
+															"key": "search",
+															"value": "",
+															"description": "product title and desc, price",
+															"disabled": true
+														},
+														{
+															"key": "category_id",
+															"value": "1",
+															"disabled": true
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Vary",
+													"value": "Origin"
+												},
+												{
+													"key": "Access-Control-Allow-Credentials",
+													"value": "true"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "1087"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"43f-9MU/W7HT/FQNJlfuVrOvkDYhmGs\""
+												},
+												{
+													"key": "Date",
+													"value": "Fri, 13 Jun 2025 09:08:11 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"Ok\",\n    \"data\": {\n        \"items\": [\n            {\n                \"id\": 2,\n                \"quantity\": 9,\n                \"total_price\": \"116.10\",\n                \"product\": {\n                    \"id\": 5,\n                    \"title\": \"Producty-2 Icki\",\n                    \"img_url\": \"\",\n                    \"description\": \"Lorem ipsum\",\n                    \"price\": \"12.90\",\n                    \"type\": \"litre\",\n                    \"created_at\": \"2025-06-13T04:54:05.529Z\",\n                    \"category\": {\n                        \"id\": 1,\n                        \"name\": \"Elektronika\",\n                        \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/elektronika.jpg\",\n                        \"description\": \"Smartfonlar, laptoplar, televizorlar ve daha fazlasi.\",\n                        \"created_at\": \"2025-06-12T05:37:56.753Z\"\n                    }\n                }\n            },\n            {\n                \"id\": 3,\n                \"quantity\": 2,\n                \"total_price\": \"17.80\",\n                \"product\": {\n                    \"id\": 6,\n                    \"title\": \"Producty-3 Icki\",\n                    \"img_url\": \"\",\n                    \"description\": \"Lorem ipsum\",\n                    \"price\": \"8.90\",\n                    \"type\": \"litre\",\n                    \"created_at\": \"2025-06-13T04:54:30.963Z\",\n                    \"category\": {\n                        \"id\": 1,\n                        \"name\": \"Elektronika\",\n                        \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/elektronika.jpg\",\n                        \"description\": \"Smartfonlar, laptoplar, televizorlar ve daha fazlasi.\",\n                        \"created_at\": \"2025-06-12T05:37:56.753Z\"\n                    }\n                }\n            }\n        ],\n        \"total\": \"133.90\",\n        \"count\": 11\n    },\n    \"result\": true\n}"
+										}
+									]
+								},
+								{
+									"name": "remove all product",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{ACCESS_TOKEN}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/basket/5/remove-all",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"basket",
+												"5",
+												"remove-all"
+											],
+											"query": [
+												{
+													"key": "limit",
+													"value": "5",
+													"disabled": true
+												},
+												{
+													"key": "page",
+													"value": "1",
+													"disabled": true
+												},
+												{
+													"key": "search",
+													"value": "",
+													"description": "product title and desc, price",
+													"disabled": true
+												},
+												{
+													"key": "category_id",
+													"value": "1",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "remove product from basket with all quantity",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept-Language",
+														"value": "{{LANG}}"
+													}
+												],
+												"url": {
+													"raw": "{{BASE_URL}}/api/tiktak/basket/5/remove-all",
+													"host": [
+														"{{BASE_URL}}"
+													],
+													"path": [
+														"api",
+														"tiktak",
+														"basket",
+														"5",
+														"remove-all"
+													],
+													"query": [
+														{
+															"key": "limit",
+															"value": "5",
+															"disabled": true
+														},
+														{
+															"key": "page",
+															"value": "1",
+															"disabled": true
+														},
+														{
+															"key": "search",
+															"value": "",
+															"description": "product title and desc, price",
+															"disabled": true
+														},
+														{
+															"key": "category_id",
+															"value": "1",
+															"disabled": true
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Vary",
+													"value": "Origin"
+												},
+												{
+													"key": "Access-Control-Allow-Credentials",
+													"value": "true"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "579"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"243-e775xYsH8M8GWD58Vt5MMKL6phQ\""
+												},
+												{
+													"key": "Date",
+													"value": "Fri, 13 Jun 2025 09:16:58 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"Ok\",\n    \"data\": {\n        \"items\": [\n            {\n                \"id\": 6,\n                \"quantity\": 2,\n                \"total_price\": \"17.80\",\n                \"product\": {\n                    \"id\": 6,\n                    \"title\": \"Producty-3 Icki\",\n                    \"img_url\": \"\",\n                    \"description\": \"Lorem ipsum\",\n                    \"price\": \"8.90\",\n                    \"type\": \"litre\",\n                    \"created_at\": \"2025-06-13T04:54:30.963Z\",\n                    \"category\": {\n                        \"id\": 1,\n                        \"name\": \"Elektronika\",\n                        \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/elektronika.jpg\",\n                        \"description\": \"Smartfonlar, laptoplar, televizorlar ve daha fazlasi.\",\n                        \"created_at\": \"2025-06-12T05:37:56.753Z\"\n                    }\n                }\n            }\n        ],\n        \"total\": \"17.80\",\n        \"count\": 2\n    },\n    \"result\": true\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/products/1",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"products",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "id",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/products/1",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"products",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "237"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"ed-6Lv3bHBi/Q2GIsOqwyjxRMe6maU\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 11:00:09 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Ok\",\n    \"data\": {\n        \"id\": 1,\n        \"title\": \"Producty-1\",\n        \"img_url\": \"\",\n        \"description\": \"Lorem ipsum\",\n        \"price\": \"12.90\",\n        \"type\": \"kg\",\n        \"created_at\": \"2025-06-12T06:38:08.292Z\",\n        \"category\": {\n            \"id\": 1,\n            \"name\": \"Elektronika\"\n        },\n        \"is_favorite\": false\n    },\n    \"result\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/products",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"products"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "5",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "search",
+											"value": "",
+											"description": "product title and desc, price",
+											"disabled": true
+										},
+										{
+											"key": "category_id",
+											"value": "1",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "list",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/products",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"products"
+											],
+											"query": [
+												{
+													"key": "limit",
+													"value": "5",
+													"disabled": true
+												},
+												{
+													"key": "page",
+													"value": "1",
+													"disabled": true
+												},
+												{
+													"key": "search",
+													"value": "",
+													"description": "product title and desc, price",
+													"disabled": true
+												},
+												{
+													"key": "category_id",
+													"value": "1",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "483"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"1e3-LMXhPaxL2x5EUJPFpm9l0W/vKAw\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 10:58:53 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Ok\",\n    \"data\": [\n        {\n            \"id\": 3,\n            \"title\": \"Producty-2 Icki\",\n            \"img_url\": \"\",\n            \"description\": \"Lorem ipsum\",\n            \"price\": \"12.90\",\n            \"type\": \"litre\",\n            \"created_at\": \"2025-06-12T06:49:09.440Z\",\n            \"category\": {\n                \"id\": 1,\n                \"name\": \"Elektronika\"\n            }\n        },\n        {\n            \"id\": 1,\n            \"title\": \"Producty-1\",\n            \"img_url\": \"\",\n            \"description\": \"Lorem ipsum\",\n            \"price\": \"12.90\",\n            \"type\": \"kg\",\n            \"created_at\": \"2025-06-12T06:38:08.292Z\",\n            \"category\": {\n                \"id\": 1,\n                \"name\": \"Elektronika\"\n            }\n        }\n    ],\n    \"pagination\": {\n        \"next\": null,\n        \"prev\": null,\n        \"current\": 1,\n        \"total\": 2,\n        \"totalPages\": 1\n    },\n    \"result\": true\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Category",
+					"item": [
+						{
+							"name": "list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if(pm.response.code == 200){",
+											"    pm.environment.set(\"OTP_CODE\", pm.response.json().data.otp);",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/categories",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"categories"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "list",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/categories",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"categories"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "3026"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"bd2-Zzwwfo8102d29RLrgJBV3FFekN0\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 10:21:25 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Ok\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Elektronika\",\n            \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/elektronika.jpg\",\n            \"description\": \"Smartfonlar, laptoplar, televizorlar ve daha fazlasi.\",\n            \"created_at\": \"2025-06-12T05:37:56.753Z\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Moda\",\n            \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/moda.jpg\",\n            \"description\": \"En yeni kolleksiyalar, aksesuarlari ve kisisel bakim mehsullari.\",\n            \"created_at\": \"2025-06-12T05:37:56.753Z\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Ev ve Bahce\",\n            \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/ev_bahce.jpg\",\n            \"description\": \"Ev dekorasyon, mebel, bahce aksesuarlari ve daha fazlasi.\",\n            \"created_at\": \"2025-06-12T05:37:56.753Z\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Spor ve Aciq Hava\",\n            \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/spor.jpg\",\n            \"description\": \"Idman ekipmanlari, aciq hava feliyyetleri ve fitness mehsullari.\",\n            \"created_at\": \"2025-06-12T05:37:56.753Z\"\n        },\n        {\n            \"id\": 5,\n            \"name\": \"Kitab ve Kancalariya\",\n            \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/kitab.jpg\",\n            \"description\": \"Kitablar, tedris materiallari ve ofis kancalariyasi.\",\n            \"created_at\": \"2025-06-12T05:37:56.753Z\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"Oyuncaq ve Usaq\",\n            \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/oyuncaq.jpg\",\n            \"description\": \"Usaq oyuncaqlari, gelisim oyunlari ve ana-baba mehsullari.\",\n            \"created_at\": \"2025-06-12T05:37:56.753Z\"\n        },\n        {\n            \"id\": 7,\n            \"name\": \"Avtomobil\",\n            \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/avtomobil.jpg\",\n            \"description\": \"Avto aksesuarlari, ehtiyat hisseleri ve avtomobil bakim mehsullari.\",\n            \"created_at\": \"2025-06-12T05:37:56.753Z\"\n        },\n        {\n            \"id\": 8,\n            \"name\": \"Saglamliq ve Guzuluk\",\n            \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/saglamliq.jpg\",\n            \"description\": \"Kosmetika, parfumlar, saglamliq mehsullari ve vitamin takviyeleri.\",\n            \"created_at\": \"2025-06-12T05:37:56.753Z\"\n        },\n        {\n            \"id\": 9,\n            \"name\": \"Mutfaq ve Yemek\",\n            \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/mutfaq.jpg\",\n            \"description\": \"Mutfaq avadanliqlari, yemek hazirlanmasi ve qida mehsullari.\",\n            \"created_at\": \"2025-06-12T05:37:56.753Z\"\n        },\n        {\n            \"id\": 10,\n            \"name\": \"Hediyyeler\",\n            \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/hediyye.jpg\",\n            \"description\": \"Xususi gunler ucun hediyyeler, suvenirler ve dekorativ esyalar.\",\n            \"created_at\": \"2025-06-12T05:37:56.753Z\"\n        }\n    ],\n    \"result\": true\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Campaign",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/campaigns",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"campaigns"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "list",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/campaigns",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"campaigns"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "586"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"24a-B6Ta/YY5keq2e6hg5IAO8M1db7M\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 10:20:33 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Ok\",\n    \"data\": [\n        {\n            \"id\": 3,\n            \"title\": \"Tiktak yenilik\",\n            \"description\": null,\n            \"img_url\": null,\n            \"created_at\": \"2025-06-12T05:40:42.843Z\"\n        },\n        {\n            \"id\": 4,\n            \"title\": \"Yaz kampanyasi\",\n            \"description\": null,\n            \"img_url\": null,\n            \"created_at\": \"2025-06-12T05:40:42.843Z\"\n        },\n        {\n            \"id\": 5,\n            \"title\": \"Yilbasi kampanyasi\",\n            \"description\": null,\n            \"img_url\": null,\n            \"created_at\": \"2025-06-12T05:40:42.843Z\"\n        },\n        {\n            \"id\": 6,\n            \"title\": \"Teknoloji Festivali\",\n            \"description\": null,\n            \"img_url\": null,\n            \"created_at\": \"2025-06-12T05:40:42.843Z\"\n        },\n        {\n            \"id\": 7,\n            \"title\": \"Moda Heftesi\",\n            \"description\": null,\n            \"img_url\": null,\n            \"created_at\": \"2025-06-12T05:40:42.843Z\"\n        }\n    ],\n    \"result\": true\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Order",
+					"item": [
+						{
+							"name": "checkout",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if(pm.response.code == 200){",
+											"    pm.environment.set(\"OTP_CODE\", pm.response.json().data.otp);",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"paymentMethod\":\"CARD\" /* Enum CASH CARD */,\n    \"note\":\"Lorem ipsum\",\n    \"address\":\"Aga Neymatulla\",\n    \"phone\":\"+994103193897\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/orders/checkout",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"orders",
+										"checkout"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "create",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"paymentMethod\":\"CARD\" /* Enum CASH CARD */,\n    \"note\":\"Lorem ipsum\",\n    \"address\":\"Aga Neymatulla\",\n    \"phone\":\"+994103193897\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/orders/checkout",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"orders",
+												"checkout"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "1081"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"439-7NRSwy9UMy9L1WY+MwN3uhGFDpE\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 13 Jun 2025 11:35:42 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"orderNumber\": \"ORD-20250613-630\",\n    \"total\": \"18.89\",\n    \"deliveryFee\": \"0.00\",\n    \"paymentMethod\": \"CARD\",\n    \"status\": \"PENDING\",\n    \"note\": \"Lorem ipsum\",\n    \"address\": \"Aga Neymatulla\",\n    \"phone\": \"+994103193897\",\n    \"createdAt\": \"2025-06-13T07:35:41.867Z\",\n    \"updatedAt\": \"2025-06-13T07:35:41.867Z\",\n    \"user\": {\n        \"id\": 3,\n        \"full_name\": \"John Doe\",\n        \"phone\": \"+994516667766\",\n        \"address\": \"Aga Neymatulla 80\",\n        \"img_url\": \"https://avatars.githubusercontent.com/u/61918721?v=4?s=400\",\n        \"role\": \"COMMERCE\",\n        \"password\": \"$2b$10$/glCjvrEoAccPELPqqSQ7ON7ifto6NCyIjtl7zwwC88KRIWrGXTlC\",\n        \"created_at\": \"2025-06-12T05:47:24.588Z\"\n    },\n    \"items\": [\n        {\n            \"id\": 1,\n            \"quantity\": 1,\n            \"total_price\": \"12.90\",\n            \"product\": {\n                \"id\": 5,\n                \"title\": \"Producty-2 Icki\",\n                \"img_url\": \"\",\n                \"description\": \"Lorem ipsum\",\n                \"price\": \"12.90\",\n                \"type\": \"litre\",\n                \"created_at\": \"2025-06-13T04:54:05.529Z\",\n                \"category\": {\n                    \"id\": 1,\n                    \"name\": \"Elektronika\",\n                    \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/elektronika.jpg\",\n                    \"description\": \"Smartfonlar, laptoplar, televizorlar ve daha fazlasi.\",\n                    \"created_at\": \"2025-06-12T05:37:56.753Z\"\n                }\n            }\n        }\n    ]\n}"
+								},
+								{
+									"name": "create",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"paymentMethod\":\"CARD\" /* Enum CASH CARD */,\n    \"note\":\"Lorem ipsum\",\n    \"address\":\"Aga Neymatulla\",\n    \"phone\":\"+994103193897\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/orders/checkout",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"orders",
+												"checkout"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "89"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"59-TjAs/d58rz44TAFoWPNf4G96VFg\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 13 Jun 2025 11:40:56 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"statusCode\": 400,\n    \"message\": \"Basket is empty. Add items before checkout.\",\n    \"result\": false\n}"
+								}
+							]
+						},
+						{
+							"name": "list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if(pm.response.code == 200){",
+											"    pm.environment.set(\"OTP_CODE\", pm.response.json().data.otp);",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"basket_id\": 1,\n    \"payment\":\"CARD\" /* Enum CASH CARD */,\n    \"note\":\"Lorem ipsum\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak//orders/user",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"",
+										"orders",
+										"user"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "list",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"basket_id\": 1,\n    \"payment\":\"CARD\" /* Enum CASH CARD */,\n    \"note\":\"Lorem ipsum\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/orders/user",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"orders",
+												"user"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "787"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"313-UTnVhSG+NzmxpWQbZIQJ+a6x238\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 13 Jun 2025 12:16:39 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 1,\n        \"orderNumber\": \"ORD-20250613-630\",\n        \"total\": \"18.89\",\n        \"deliveryFee\": \"0.00\",\n        \"paymentMethod\": \"CARD\",\n        \"status\": \"PENDING\",\n        \"note\": \"Lorem ipsum\",\n        \"address\": \"Aga Neymatulla\",\n        \"phone\": \"+994103193897\",\n        \"createdAt\": \"2025-06-13T07:35:41.867Z\",\n        \"updatedAt\": \"2025-06-13T07:35:41.867Z\",\n        \"items\": [\n            {\n                \"id\": 1,\n                \"quantity\": 1,\n                \"total_price\": \"12.90\",\n                \"product\": {\n                    \"id\": 5,\n                    \"title\": \"Producty-2 Icki\",\n                    \"img_url\": \"\",\n                    \"description\": \"Lorem ipsum\",\n                    \"price\": \"12.90\",\n                    \"type\": \"litre\",\n                    \"created_at\": \"2025-06-13T04:54:05.529Z\",\n                    \"category\": {\n                        \"id\": 1,\n                        \"name\": \"Elektronika\",\n                        \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/elektronika.jpg\",\n                        \"description\": \"Smartfonlar, laptoplar, televizorlar ve daha fazlasi.\",\n                        \"created_at\": \"2025-06-12T05:37:56.753Z\"\n                    }\n                }\n            }\n        ]\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if(pm.response.code == 200){",
+											"    pm.environment.set(\"OTP_CODE\", pm.response.json().data.otp);",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"basket_id\": 1,\n    \"payment\":\"CARD\" /* Enum CASH CARD */,\n    \"note\":\"Lorem ipsum\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/orders/user/1",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"orders",
+										"user",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "id",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"basket_id\": 1,\n    \"payment\":\"CARD\" /* Enum CASH CARD */,\n    \"note\":\"Lorem ipsum\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/orders/user/1",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"orders",
+												"user",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "785"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"311-JN00152FVvOuE7fnKHngnIBtglw\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 13 Jun 2025 12:17:23 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"orderNumber\": \"ORD-20250613-630\",\n    \"total\": \"18.89\",\n    \"deliveryFee\": \"0.00\",\n    \"paymentMethod\": \"CARD\",\n    \"status\": \"PENDING\",\n    \"note\": \"Lorem ipsum\",\n    \"address\": \"Aga Neymatulla\",\n    \"phone\": \"+994103193897\",\n    \"createdAt\": \"2025-06-13T07:35:41.867Z\",\n    \"updatedAt\": \"2025-06-13T07:35:41.867Z\",\n    \"items\": [\n        {\n            \"id\": 1,\n            \"quantity\": 1,\n            \"total_price\": \"12.90\",\n            \"product\": {\n                \"id\": 5,\n                \"title\": \"Producty-2 Icki\",\n                \"img_url\": \"\",\n                \"description\": \"Lorem ipsum\",\n                \"price\": \"12.90\",\n                \"type\": \"litre\",\n                \"created_at\": \"2025-06-13T04:54:05.529Z\",\n                \"category\": {\n                    \"id\": 1,\n                    \"name\": \"Elektronika\",\n                    \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/elektronika.jpg\",\n                    \"description\": \"Smartfonlar, laptoplar, televizorlar ve daha fazlasi.\",\n                    \"created_at\": \"2025-06-12T05:37:56.753Z\"\n                }\n            }\n        }\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if(pm.response.code == 200){",
+											"    pm.environment.set(\"OTP_CODE\", pm.response.json().data.otp);",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "{{LANG}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"basket_id\": 1,\n    \"payment\":\"CARD\" /* Enum CASH CARD */,\n    \"note\":\"Lorem ipsum\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/orders/user/1",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"orders",
+										"user",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "id",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"value": "{{LANG}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"basket_id\": 1,\n    \"payment\":\"CARD\" /* Enum CASH CARD */,\n    \"note\":\"Lorem ipsum\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/api/tiktak/orders/user/1",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"tiktak",
+												"orders",
+												"user",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "785"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"311-JN00152FVvOuE7fnKHngnIBtglw\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 13 Jun 2025 12:17:23 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"orderNumber\": \"ORD-20250613-630\",\n    \"total\": \"18.89\",\n    \"deliveryFee\": \"0.00\",\n    \"paymentMethod\": \"CARD\",\n    \"status\": \"PENDING\",\n    \"note\": \"Lorem ipsum\",\n    \"address\": \"Aga Neymatulla\",\n    \"phone\": \"+994103193897\",\n    \"createdAt\": \"2025-06-13T07:35:41.867Z\",\n    \"updatedAt\": \"2025-06-13T07:35:41.867Z\",\n    \"items\": [\n        {\n            \"id\": 1,\n            \"quantity\": 1,\n            \"total_price\": \"12.90\",\n            \"product\": {\n                \"id\": 5,\n                \"title\": \"Producty-2 Icki\",\n                \"img_url\": \"\",\n                \"description\": \"Lorem ipsum\",\n                \"price\": \"12.90\",\n                \"type\": \"litre\",\n                \"created_at\": \"2025-06-13T04:54:05.529Z\",\n                \"category\": {\n                    \"id\": 1,\n                    \"name\": \"Elektronika\",\n                    \"img_url\": \"https://www.tiktak.az/cdn-cgi/image/width=600,height=400,quality=80,format=auto/https://www.tiktak.az/media/catalog/category/elektronika.jpg\",\n                    \"description\": \"Smartfonlar, laptoplar, televizorlar ve daha fazlasi.\",\n                    \"created_at\": \"2025-06-12T05:37:56.753Z\"\n                }\n            }\n        }\n    ]\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Upload",
+			"item": [
+				{
+					"name": "upload",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/rahimlisarkhan/Downloads/WhatsApp Image 2025-06-06 at 5.41.39 PM.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/tiktak/upload",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"tiktak",
+								"upload"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "upload",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/Users/rahimlisarkhan/Downloads/WhatsApp Image 2025-06-06 at 5.41.39 PM.jpeg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/tiktak/upload",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"tiktak",
+										"upload"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "166"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a6-H54BOazUw3cYc4YUA2QgJFI+m6I\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 13 Jun 2025 13:19:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"File uploaded successfully\",\n    \"data\": {\n        \"url\": \"https://uploads.sarkhanrahimli.dev/onlearn/images/onlearn-file-2025_06_13_17_19_56-u72jzi.webp\"\n    },\n    \"result\": true\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
