@@ -1,6 +1,8 @@
 import { Navigate, Outlet } from 'react-router-dom'
 import { useSession } from '@/entities/session'
+import { SearchProvider } from '@/shared/lib/search-context'
 import { Sidebar } from '@/widgets/sidebar'
+import { Topbar } from '@/widgets/topbar'
 
 export function ProtectedLayout() {
   const { isAuthenticated, isLoading } = useSession()
@@ -18,11 +20,16 @@ export function ProtectedLayout() {
   }
 
   return (
-    <div className="flex min-h-screen">
-      <Sidebar />
-      <main className="flex-1 p-6">
-        <Outlet />
-      </main>
-    </div>
+    <SearchProvider>
+      <div className="flex min-h-screen w-full flex-col bg-[#F4F4F9]">
+        <Topbar />
+        <div className="flex flex-1 gap-6 p-6">
+          <Sidebar />
+          <main className="flex-1 rounded-xl bg-white p-6 shadow-sm">
+            <Outlet />
+          </main>
+        </div>
+      </div>
+    </SearchProvider>
   )
 }
