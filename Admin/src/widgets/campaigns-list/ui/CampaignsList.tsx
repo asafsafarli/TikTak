@@ -56,22 +56,40 @@ export function CampaignsList() {
       {!isLoading && !isError && filtered.length > 0 && (
         <Table>
           <TableHeader>
-            <TableRow>
-              <TableHead>No</TableHead>
-              <TableHead>Tarix</TableHead>
-              <TableHead>Açıqlama</TableHead>
-              <TableHead>Başlıq</TableHead>
-              <TableHead className="text-right">Əməliyyat</TableHead>
+            <TableRow className="border-none bg-[#F7F7FA] hover:bg-[#F7F7FA]">
+              <TableHead className="rounded-l-lg px-4 py-3 text-xs font-medium text-neutral-500">
+                No
+              </TableHead>
+              <TableHead className="px-4 py-3 text-xs font-medium text-neutral-500">
+                Tarix
+              </TableHead>
+              <TableHead className="px-4 py-3 text-xs font-medium text-neutral-500">
+                Açıqlama
+              </TableHead>
+              <TableHead className="px-4 py-3 text-xs font-medium text-neutral-500">
+                Başlıq
+              </TableHead>
+              <TableHead className="rounded-r-lg px-4 py-3 text-right text-xs font-medium text-neutral-500">
+                Əməliyyat
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {filtered.map((campaign) => (
-              <TableRow key={campaign.id}>
-                <TableCell>#{campaign.id}</TableCell>
-                <TableCell>{formatDate(campaign.created_at)}</TableCell>
-                <TableCell className="max-w-xs truncate">{campaign.description}</TableCell>
-                <TableCell>{campaign.title}</TableCell>
-                <TableCell className="text-right">
+              <TableRow key={campaign.id} className="border-neutral-100">
+                <TableCell className="px-4 py-4 text-sm text-neutral-700">
+                  #{campaign.id}
+                </TableCell>
+                <TableCell className="px-4 py-4 text-sm text-neutral-700">
+                  {formatDate(campaign.created_at)}
+                </TableCell>
+                <TableCell className="max-w-xs truncate px-4 py-4 text-sm text-neutral-700">
+                  {campaign.description}
+                </TableCell>
+                <TableCell className="px-4 py-4 text-sm font-medium text-neutral-900">
+                  {campaign.title}
+                </TableCell>
+                <TableCell className="px-4 py-4 text-right whitespace-nowrap">
                   <button
                     type="button"
                     onClick={() => openEditDialog(campaign)}
