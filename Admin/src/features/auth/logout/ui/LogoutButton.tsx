@@ -14,7 +14,7 @@ export function LogoutButton() {
     <button
       type="button"
       onClick={handleLogout}
-      className="w-full rounded-md px-3 py-2 text-left text-[20px] leading-[100%] font-normal tracking-normal text-neutral-700 transition-colors hover:text-red-600"
+      className="pt-[27px] pb-0 text-left text-[20px] leading-[100%] font-normal tracking-normal text-neutral-800 transition-colors hover:text-red-600"
     >
       Çıxış
     </button>

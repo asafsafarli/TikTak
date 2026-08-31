@@ -23,9 +23,9 @@ export function ProtectedLayout() {
     <SearchProvider>
       <div className="flex min-h-screen w-full flex-col bg-[#F4F4F9]">
         <Topbar />
-        <div className="flex flex-1 gap-6 pt-[101px] pr-[189px] pb-6 pl-[180px]">
+        <div className="mx-auto flex w-full max-w-[1560px] flex-1 flex-col gap-5 px-4 pt-[104px] pb-10 lg:flex-row lg:items-start 2xl:px-0">
           <Sidebar />
-          <main className="flex-1 rounded-xl bg-white p-6 shadow-sm">
+          <main className="flex-1 rounded-[10px] bg-white p-10 pt-[29px] shadow-sm lg:min-h-[490px]">
             <Outlet />
           </main>
         </div>
