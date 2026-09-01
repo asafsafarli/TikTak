@@ -1,7 +1,7 @@
 export const navItems = [
-  { to: '/products', label: 'Məhsullar' },
-  { to: '/categories', label: 'Kateqoriyalar' },
   { to: '/campaigns', label: 'Kampaniyalar' },
-  { to: '/orders', label: 'Sifarişlər' },
+  { to: '/categories', label: 'Kateqoriyalar' },
+  { to: '/products', label: 'Məhsullar' },
   { to: '/users', label: 'İstifadəçilər' },
+  { to: '/orders', label: 'Sifarişlər' },
 ] as const

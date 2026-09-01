@@ -13,7 +13,7 @@ export const router = createBrowserRouter([
     path: '/',
     element: <ProtectedLayout />,
     children: [
-      { index: true, element: <Navigate to="/products" replace /> },
+      { index: true, element: <Navigate to="/campaigns" replace /> },
       { path: 'products', element: <ProductsPage /> },
       { path: 'categories', element: <CategoriesPage /> },
       { path: 'campaigns', element: <CampaignsPage /> },

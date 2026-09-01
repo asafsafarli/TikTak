@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom'
 import { useSession } from '@/entities/session'
-import { Button } from '@/shared/ui/button'
 
 export function LogoutButton() {
   const { logout } = useSession()
@@ -12,8 +11,12 @@ export function LogoutButton() {
   }
 
   return (
-    <Button variant="ghost" onClick={handleLogout}>
+    <button
+      type="button"
+      onClick={handleLogout}
+      className="pt-[27px] pb-0 text-left text-[20px] leading-[100%] font-normal tracking-normal text-neutral-800 transition-colors hover:text-red-600"
+    >
       Çıxış
-    </Button>
+    </button>
   )
 }
