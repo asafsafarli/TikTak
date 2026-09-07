@@ -41,6 +41,23 @@ npm install   # artıq quraşdırılıb
 npm run dev   # http://localhost:3000
 ```
 
+## Admin panel — status
+
+Auth axını (login, sessiya, qorunan route-lar) və **beş idarəetmə səhifəsi** hazırdır:
+
+| Səhifə | Route | İmkanlar |
+| --- | --- | --- |
+| Sifarişlər | `/orders` | statistika kartları, sıralama + filtr, status dəyişmə, detal modalı |
+| Kampaniyalar | `/campaigns` | siyahı, sütun axtarışı, yaratma / düzəltmə / silmə |
+| Kateqoriyalar | `/categories` | siyahı, sütun axtarışı, yaratma / düzəltmə / silmə |
+| Məhsullar | `/products` | siyahı, sütun axtarışı, kateqoriya + növ, yaratma / düzəltmə / silmə |
+| İstifadəçilər | `/users` | siyahı, sıralama + rol filtri, detal modalı (yalnız oxu) |
+
+Bütün siyahılar eyni modeldədir: `shared/ui/table`, client-side filtr + səhifələmə, sabit
+sətir hündürlüyü. Endpoint-lər və səhifə təfərrüatları: [`Admin/API.md`](./Admin/API.md).
+
+Növbəti: refresh-token axını, şəkil yükləmənin (`POST /upload`) formalara bağlanması.
+
 ## Admin-ə UI komponenti əlavə etmək
 
 ```bash
