@@ -1,10 +1,13 @@
 import { useEffect, useMemo, useState, type ComponentProps } from 'react'
+import { Popover } from 'radix-ui'
+import { ChevronLeft, ChevronRight, Pencil, Plus, Search, Trash2 } from 'lucide-react'
 import type { Campaign } from '@/entities/campaign'
 import { useCampaigns } from '@/entities/campaign'
 import { CampaignFormDialog } from '@/features/campaigns/upsert'
 import { DeleteCampaignDialog } from '@/features/campaigns/delete'
 import { useSearch } from '@/shared/lib/search-context'
 import { formatDate } from '@/shared/lib/format-date'
+import { cn } from '@/shared/lib/utils'
 import { Button } from '@/shared/ui/button'
 import {
   Table,
@@ -17,6 +20,8 @@ import {
 
 const PAGE_SIZE = 7
 
+type FilterColumn = 'title' | 'description'
+
 export function CampaignsList() {
   const { data: campaigns, isLoading, isError } = useCampaigns()
   const { debouncedSearch } = useSearch()
@@ -24,15 +29,26 @@ export function CampaignsList() {
   const [formCampaign, setFormCampaign] = useState<Campaign | undefined>(undefined)
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [deleteCampaign, setDeleteCampaign] = useState<Campaign | null>(null)
+  const [columnFilters, setColumnFilters] = useState<Partial<Record<FilterColumn, string>>>({})
   const [page, setPage] = useState(1)
 
-  const filtered = useMemo(
-    () =>
-      (campaigns ?? []).filter((campaign) =>
-        campaign.title.toLowerCase().includes(debouncedSearch.trim().toLowerCase()),
-      ),
-    [campaigns, debouncedSearch],
-  )
+  const filtered = useMemo(() => {
+    const search = debouncedSearch.trim().toLowerCase()
+    const titleFilter = columnFilters.title?.trim().toLowerCase()
+    const descriptionFilter = columnFilters.description?.trim().toLowerCase()
+
+    return (campaigns ?? []).filter((campaign) => {
+      if (search && !campaign.title.toLowerCase().includes(search)) return false
+      if (titleFilter && !campaign.title.toLowerCase().includes(titleFilter)) return false
+      if (
+        descriptionFilter &&
+        !(campaign.description ?? '').toLowerCase().includes(descriptionFilter)
+      ) {
+        return false
+      }
+      return true
+    })
+  }, [campaigns, debouncedSearch, columnFilters])
 
   const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE))
 
@@ -43,9 +59,10 @@ export function CampaignsList() {
 
   useEffect(() => {
     setPage(1)
-  }, [debouncedSearch])
+  }, [debouncedSearch, columnFilters])
 
-  const pageItems = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
+  const startIndex = (page - 1) * PAGE_SIZE
+  const pageItems = filtered.slice(startIndex, startIndex + PAGE_SIZE)
   // Səhifə dəyişəndə box hündürlüyü sabit qalsın deyə son səhifəni boş sətirlərlə doldururuq.
   const fillerRows = pageCount > 1 ? PAGE_SIZE - pageItems.length : 0
 
@@ -59,78 +76,124 @@ export function CampaignsList() {
     setIsFormOpen(true)
   }
 
+  const rangeLabel =
+    filtered.length === 0
+      ? '0 nəticə'
+      : `${startIndex + 1}-${Math.min(startIndex + PAGE_SIZE, filtered.length)} / ${filtered.length} nəticə`
+
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex items-center justify-between">
-        <h1 className="text-[18px] font-normal leading-[100%] tracking-normal capitalize text-[#2B3043]">
-          Kampaniyalar
-        </h1>
+    <div className="flex flex-col gap-6">
+      <div className="flex items-center justify-between border-b border-[#EDEEF2] pb-5">
+        <h1 className="text-[28px] leading-[100%] font-semibold text-[#2B3043]">Kampaniyalar</h1>
         <Button
           onClick={openCreateDialog}
-          className="h-[40px] w-[89px] rounded-[10px] p-0 text-[16px] font-bold leading-[100%] text-white hover:opacity-90"
+          className="h-[40px] gap-2 rounded-[10px] px-4 text-[15px] font-bold text-white hover:opacity-90"
           style={{ backgroundColor: '#92D871' }}
         >
-          Əlavə et
+          <Plus className="size-4" />
+          Yeni Kampaniya
         </Button>
       </div>
 
       {isLoading && <p className="text-sm text-neutral-500">Yüklənir...</p>}
       {isError && <p className="text-sm text-red-600">Kampaniyalar yüklənə bilmədi.</p>}
 
-      {!isLoading && !isError && filtered.length === 0 && (
-        <p className="text-sm text-neutral-500">Heç bir kampaniya tapılmadı.</p>
-      )}
-
-      {!isLoading && !isError && filtered.length > 0 && (
+      {!isLoading && !isError && (
         <>
           <Table>
             <TableHeader>
               <TableRow className="border-none bg-[#F7F7FA] hover:bg-[#F7F7FA]">
-                <TableHead className="rounded-l-lg px-4 py-4 text-[16px] font-normal leading-[100%] text-neutral-500">
-                  No
+                <TableHead className="rounded-l-lg px-4 py-4 text-[14px] leading-[100%] font-normal text-neutral-500">
+                  Sıra
                 </TableHead>
-                <TableHead className="px-4 py-4 text-[16px] font-normal leading-[100%] text-neutral-500">
+                <TableHead className="px-4 py-4 text-[14px] leading-[100%] font-normal text-neutral-500">
+                  Şəkil
+                </TableHead>
+                <TableHead className="px-4 py-4 text-[14px] leading-[100%] font-normal text-neutral-500">
+                  <div className="flex items-center gap-1.5">
+                    <span>Başlıq</span>
+                    <ColumnSearch
+                      column="title"
+                      value={columnFilters.title ?? ''}
+                      onChange={(next) =>
+                        setColumnFilters((prev) => ({ ...prev, title: next }))
+                      }
+                    />
+                  </div>
+                </TableHead>
+                <TableHead className="px-4 py-4 text-[14px] leading-[100%] font-normal text-neutral-500">
+                  <div className="flex items-center gap-1.5">
+                    <span>Açıqlama</span>
+                    <ColumnSearch
+                      column="description"
+                      value={columnFilters.description ?? ''}
+                      onChange={(next) =>
+                        setColumnFilters((prev) => ({ ...prev, description: next }))
+                      }
+                    />
+                  </div>
+                </TableHead>
+                <TableHead className="px-4 py-4 text-[14px] leading-[100%] font-normal text-neutral-500">
                   Tarix
                 </TableHead>
-                <TableHead className="px-4 py-4 text-[16px] font-normal leading-[100%] text-neutral-500">
-                  Açıqlama
+                <TableHead className="rounded-r-lg px-4 py-4 text-[14px] leading-[100%] font-normal text-neutral-500">
+                  Əməliyyat
                 </TableHead>
-                <TableHead className="px-4 py-4 text-[16px] font-normal leading-[100%] text-neutral-500">
-                  Başlıq
-                </TableHead>
-                <TableHead className="rounded-r-lg px-4 py-4" aria-label="Əməliyyat" />
               </TableRow>
             </TableHeader>
             <TableBody>
-              {pageItems.map((campaign) => (
+              {filtered.length === 0 && (
+                <TableRow className="border-transparent hover:bg-transparent">
+                  <TableCell colSpan={6} className="px-4 py-10 text-center text-sm text-neutral-500">
+                    Heç bir kampaniya tapılmadı.
+                  </TableCell>
+                </TableRow>
+              )}
+
+              {pageItems.map((campaign, index) => (
                 <TableRow key={campaign.id} className="border-neutral-100">
-                  <TableCell className="px-4 py-5 text-[16px] font-light leading-[100%] text-[#2B3043]">
-                    #{campaign.id}
+                  <TableCell className="px-4 py-4 text-[15px] leading-[100%] font-light text-[#2B3043]">
+                    {startIndex + index + 1}
                   </TableCell>
-                  <TableCell className="px-4 py-5 text-[16px] font-light leading-[100%] text-[#2B3043]">
-                    {formatDate(campaign.created_at)}
+                  <TableCell className="px-4 py-4">
+                    {campaign.img_url ? (
+                      <img
+                        src={campaign.img_url}
+                        alt=""
+                        className="size-11 rounded-[8px] object-cover"
+                      />
+                    ) : (
+                      <div className="size-11 rounded-[8px] bg-neutral-100" aria-hidden />
+                    )}
                   </TableCell>
-                  <TableCell className="max-w-xs truncate px-4 py-5 text-[16px] font-light leading-[100%] text-[#2B3043]">
-                    {campaign.description}
-                  </TableCell>
-                  <TableCell className="px-4 py-5 text-[16px] font-light leading-[100%] text-[#2B3043]">
+                  <TableCell className="max-w-[220px] truncate px-4 py-4 text-[15px] leading-[100%] font-light text-[#2B3043]">
                     {campaign.title}
                   </TableCell>
-                  <TableCell className="px-4 py-5 text-right whitespace-nowrap">
-                    <button
-                      type="button"
-                      onClick={() => openEditDialog(campaign)}
-                      className="mr-3 text-[16px] font-light leading-[100%] text-[#2B3043] hover:text-neutral-900"
-                    >
-                      düzəlt
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setDeleteCampaign(campaign)}
-                      className="text-[16px] font-light leading-[100%] text-[#2B3043] hover:text-red-600"
-                    >
-                      sil
-                    </button>
+                  <TableCell className="w-[320px] px-4 py-4 text-[15px] leading-[1.45] font-light whitespace-normal text-[#2B3043]">
+                    <span className="line-clamp-2">{campaign.description}</span>
+                  </TableCell>
+                  <TableCell className="px-4 py-4 text-[15px] leading-[100%] font-light whitespace-nowrap text-[#2B3043]">
+                    {formatDate(campaign.created_at)}
+                  </TableCell>
+                  <TableCell className="px-4 py-4 whitespace-nowrap">
+                    <div className="flex items-center gap-4">
+                      <button
+                        type="button"
+                        onClick={() => openEditDialog(campaign)}
+                        className="inline-flex items-center gap-1.5 text-[15px] leading-[100%] font-light text-[#2B3043] hover:text-neutral-900"
+                      >
+                        <Pencil className="size-4 text-[#9AA0AC]" />
+                        Düzəlt
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setDeleteCampaign(campaign)}
+                        className="inline-flex items-center gap-1.5 text-[15px] leading-[100%] font-light text-[#EF4444] hover:opacity-80"
+                      >
+                        <Trash2 className="size-4" />
+                        Sil
+                      </button>
+                    </div>
                   </TableCell>
                 </TableRow>
               ))}
@@ -139,11 +202,7 @@ export function CampaignsList() {
                   key={`filler-${index}`}
                   className="border-transparent hover:bg-transparent"
                 >
-                  <TableCell
-                    colSpan={5}
-                    aria-hidden
-                    className="px-4 py-5 text-[16px] leading-[100%]"
-                  >
+                  <TableCell colSpan={6} aria-hidden className="px-4 py-6 text-[15px] leading-[100%]">
                     &nbsp;
                   </TableCell>
                 </TableRow>
@@ -151,9 +210,10 @@ export function CampaignsList() {
             </TableBody>
           </Table>
 
-          {pageCount > 1 && (
+          <div className="flex items-center justify-end gap-4 pt-1 text-sm text-neutral-500">
+            <span>{rangeLabel}</span>
             <Pagination page={page} pageCount={pageCount} onPageChange={setPage} />
-          )}
+          </div>
         </>
       )}
 
@@ -167,6 +227,52 @@ export function CampaignsList() {
   )
 }
 
+interface ColumnSearchProps {
+  column: FilterColumn
+  value: string
+  onChange: (value: string) => void
+}
+
+function ColumnSearch({ column, value, onChange }: ColumnSearchProps) {
+  return (
+    <Popover.Root>
+      <Popover.Trigger asChild>
+        <button
+          type="button"
+          className="rounded p-0.5 hover:bg-neutral-200/60"
+          aria-label={column === 'title' ? 'Başlıqda axtar' : 'Açıqlamada axtar'}
+        >
+          <Search className={cn('size-3.5', value.trim() ? 'text-[#6FCF54]' : 'text-[#C3C7D1]')} />
+        </button>
+      </Popover.Trigger>
+      <Popover.Portal>
+        <Popover.Content
+          align="start"
+          sideOffset={6}
+          className="z-50 w-[220px] rounded-[10px] border border-[#EEF0F4] bg-white p-3 shadow-lg"
+        >
+          <input
+            autoFocus
+            value={value}
+            onChange={(event) => onChange(event.target.value)}
+            placeholder="Axtar..."
+            className="h-9 w-full rounded-lg bg-[#F4F4F9] px-3 text-sm text-[#2B3043] outline-none"
+          />
+          {value.trim() ? (
+            <button
+              type="button"
+              onClick={() => onChange('')}
+              className="mt-2 text-xs text-neutral-500 hover:text-neutral-800"
+            >
+              Təmizlə
+            </button>
+          ) : null}
+        </Popover.Content>
+      </Popover.Portal>
+    </Popover.Root>
+  )
+}
+
 interface PaginationProps {
   page: number
   pageCount: number
@@ -177,13 +283,13 @@ function Pagination({ page, pageCount, onPageChange }: PaginationProps) {
   const pages = getPageRange(page, pageCount)
 
   return (
-    <nav className="flex items-center justify-end gap-1 pt-1" aria-label="Səhifələmə">
+    <nav className="flex items-center gap-1" aria-label="Səhifələmə">
       <PaginationButton
         disabled={page === 1}
         onClick={() => onPageChange(page - 1)}
         aria-label="Əvvəlki səhifə"
       >
-        ‹
+        <ChevronLeft className="size-4" />
       </PaginationButton>
 
       {pages.map((item, index) =>
@@ -208,7 +314,7 @@ function Pagination({ page, pageCount, onPageChange }: PaginationProps) {
         onClick={() => onPageChange(page + 1)}
         aria-label="Növbəti səhifə"
       >
-        ›
+        <ChevronRight className="size-4" />
       </PaginationButton>
     </nav>
   )
@@ -222,11 +328,11 @@ function PaginationButton({
   return (
     <button
       type="button"
-      className={`flex h-8 min-w-8 items-center justify-center rounded-lg px-2 text-sm font-light transition-colors disabled:cursor-not-allowed disabled:opacity-40 ${
-        active
-          ? 'font-normal text-white'
-          : 'text-[#2B3043] hover:bg-neutral-100'
-      } ${className ?? ''}`}
+      className={cn(
+        'flex h-8 min-w-8 items-center justify-center rounded-lg px-2 text-sm font-light transition-colors disabled:cursor-not-allowed disabled:opacity-40',
+        active ? 'font-normal text-white' : 'text-[#2B3043] hover:bg-neutral-100',
+        className,
+      )}
       style={active ? { backgroundColor: '#92D871' } : undefined}
       {...props}
     />
