@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
-import { XIcon } from 'lucide-react'
+import { ChevronDown, XIcon } from 'lucide-react'
 import type { Order, OrderStatus } from '@/entities/order'
 import { ORDER_STATUSES, ORDER_STATUS_META, useUpdateOrderStatus } from '@/entities/order'
 import { ApiError } from '@/shared/api/client'
-import { formatDate } from '@/shared/lib/format-date'
 import { Dialog, DialogClose, DialogContent, DialogTitle } from '@/shared/ui/dialog'
 
 const MANAT = '₼'
@@ -33,17 +32,13 @@ export function OrderDetailDialog({ open, onOpenChange, order }: OrderDetailDial
 
   if (!order) return null
 
-  const deliveryFee = Number(order.deliveryFee)
-  const total = Number(order.total)
-  const subtotal = total - deliveryFee
   const currentOrder = order
+  const deliveryFee = Number(order.deliveryFee)
+  const deliveryLabel = deliveryFee === 0 ? 'Pulsuz' : `${deliveryFee.toFixed(2)} ${MANAT}`
 
   async function handleStatusChange(next: OrderStatus) {
-    if (next === currentOrder.status) {
-      setStatus(next)
-      return
-    }
     setStatus(next)
+    if (next === currentOrder.status) return
     setError(null)
     try {
       await updateStatus.mutateAsync({ id: currentOrder.id, status: next })
@@ -58,106 +53,134 @@ export function OrderDetailDialog({ open, onOpenChange, order }: OrderDetailDial
       <DialogContent
         showCloseButton={false}
         aria-describedby={undefined}
-        className="flex max-h-[calc(100vh-4rem)] w-[calc(100%-2rem)] max-w-[640px] flex-col gap-0 overflow-y-auto rounded-[10px] bg-white p-8 shadow-xl sm:max-w-[640px]"
+        className="flex max-h-[calc(100vh-4rem)] w-[calc(100%-2rem)] max-w-[720px] flex-col gap-0 overflow-hidden rounded-[16px] bg-white p-0 shadow-xl sm:max-w-[720px]"
       >
-        <DialogClose className="absolute top-6 right-6 text-[#1A1D28] transition-opacity hover:opacity-60">
-          <XIcon className="size-4" />
-          <span className="sr-only">Bağla</span>
-        </DialogClose>
+        <div className="flex shrink-0 items-center gap-5 border-b border-[#EDEEF2] px-6 py-4">
+          <Avatar name={order.user.full_name} src={order.user.img_url} />
 
-        <DialogTitle className="text-[22px] font-semibold leading-[100%] text-[#2B3043]">
-          {order.orderNumber}
-        </DialogTitle>
-        <p className="mt-2 text-sm text-neutral-500">{formatDate(order.createdAt)}</p>
+          <DialogTitle className="text-[19px] leading-[100%] font-semibold text-[#2B3043]">
+            {order.orderNumber}
+          </DialogTitle>
 
-        <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-4">
-          <Field label="Müştəri" value={order.user.full_name} />
-          <Field label="Telefon" value={order.phone} />
-          <Field label="Çatdırılma ünvanı" value={order.address} className="col-span-2" />
-          <Field label="Ödəniş" value={PAYMENT_LABEL[order.paymentMethod]} />
-          <Field
-            label="Çatdırılma haqqı"
-            value={deliveryFee === 0 ? 'Pulsuz' : `${deliveryFee.toFixed(2)} ${MANAT}`}
-          />
-          {order.note ? <Field label="Qeyd" value={order.note} className="col-span-2" /> : null}
-        </div>
-
-        <div className="mt-6 border-t border-[#EDEEF2] pt-4">
-          <p className="text-sm font-medium text-[#2B3043]">Məhsullar</p>
-          <ul className="mt-3 flex flex-col gap-2">
-            {order.items.map((item) => (
-              <li
-                key={item.id}
-                className="flex items-center justify-between text-sm text-[#2B3043]"
+          <div className="ml-auto flex flex-col gap-1">
+            <span className="text-[12px] leading-[100%] text-neutral-400">Status</span>
+            <div className="relative">
+              <select
+                value={status}
+                onChange={(event) => handleStatusChange(event.target.value as OrderStatus)}
+                disabled={updateStatus.isPending}
+                aria-label="Status"
+                className="h-9 w-[150px] appearance-none rounded-[8px] border border-[#E6E8EE] bg-white pr-8 pl-3 text-sm text-[#2B3043] outline-none disabled:opacity-60"
               >
-                <span className="font-light">
-                  {item.product.title} <span className="text-neutral-400">× {item.quantity}</span>
-                </span>
-                <span className="font-light">
-                  {Number(item.total_price).toFixed(2)} {MANAT}
-                </span>
-              </li>
-            ))}
-          </ul>
+                {ORDER_STATUSES.map((value) => (
+                  <option key={value} value={value}>
+                    {ORDER_STATUS_META[value].label}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="pointer-events-none absolute top-1/2 right-2 size-4 -translate-y-1/2 text-neutral-400" />
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-1">
+            <span className="text-[12px] leading-[100%] text-neutral-400">Ümumi məbləğ</span>
+            <span className="text-[17px] leading-[100%] font-bold text-[#EF4444]">
+              {Number(order.total).toFixed(2)} {MANAT}
+            </span>
+          </div>
+
+          <DialogClose className="self-start text-[#1A1D28] transition-opacity hover:opacity-60">
+            <XIcon className="size-4" />
+            <span className="sr-only">Bağla</span>
+          </DialogClose>
         </div>
 
-        <div className="mt-4 flex flex-col gap-1 border-t border-[#EDEEF2] pt-4 text-sm">
-          <Row label="Ara cəm" value={`${subtotal.toFixed(2)} ${MANAT}`} />
-          <Row
-            label="Çatdırılma"
-            value={deliveryFee === 0 ? 'Pulsuz' : `${deliveryFee.toFixed(2)} ${MANAT}`}
-          />
-          <Row label="Cəmi" value={`${total.toFixed(2)} ${MANAT}`} strong />
-        </div>
+        <div className="flex flex-1 flex-col gap-4 overflow-y-auto bg-[#F6F7F9] p-5">
+          <section className="rounded-[12px] bg-white p-5">
+            <p className="text-[15px] font-semibold text-[#2B3043]">Sifariş Məlumatları</p>
+            <hr className="my-3 border-[#EDEEF2]" />
+            <dl className="flex flex-col gap-2.5 text-sm">
+              <InfoRow label="Tarix" value={order.createdAt.slice(0, 10)} />
+              <InfoRow label="Çatdırılma Ünvanı" value={order.address} />
+              <InfoRow label="Telefon" value={order.phone} />
+              <InfoRow label="Ödəmə Metodu" value={PAYMENT_LABEL[order.paymentMethod]} />
+            </dl>
+          </section>
 
-        <div className="mt-6">
-          <label htmlFor="order-status" className="text-sm font-medium text-[#2B3043]">
-            Status
-          </label>
-          <select
-            id="order-status"
-            value={status}
-            onChange={(event) => handleStatusChange(event.target.value as OrderStatus)}
-            disabled={updateStatus.isPending}
-            className="mt-2 h-11 w-full rounded-[10px] border-0 bg-[#F4F4F9] px-4 text-sm text-[#2B3043] outline-none transition-shadow focus-visible:ring-2 focus-visible:ring-[#92D871]/50 disabled:opacity-60"
-          >
-            {ORDER_STATUSES.map((value) => (
-              <option key={value} value={value}>
-                {ORDER_STATUS_META[value].label}
-              </option>
-            ))}
-          </select>
-          {error ? <p className="mt-2 text-sm text-red-600">{error}</p> : null}
+          <section className="rounded-[12px] bg-white p-5">
+            <p className="text-[15px] font-semibold text-[#2B3043]">
+              Məhsullar ({order.items.length})
+            </p>
+            <hr className="my-3 border-[#EDEEF2]" />
+
+            <ul className="flex flex-col">
+              {order.items.map((item) => (
+                <li
+                  key={item.id}
+                  className="flex items-center gap-3 border-b border-[#F1F2F5] py-3 last:border-b-0"
+                >
+                  {item.product.img_url ? (
+                    <img
+                      src={item.product.img_url}
+                      alt=""
+                      className="size-11 shrink-0 rounded-[8px] object-cover"
+                    />
+                  ) : (
+                    <div className="size-11 shrink-0 rounded-[8px] bg-neutral-100" aria-hidden />
+                  )}
+
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-medium text-[#2B3043]">
+                      {item.product.title}
+                    </p>
+                    <p className="mt-0.5 truncate text-xs text-neutral-400">
+                      {[item.product.category?.name, `${item.quantity} ${item.product.type}`]
+                        .filter(Boolean)
+                        .join(' • ')}
+                    </p>
+                  </div>
+
+                  <div className="shrink-0 text-right">
+                    <p className="text-sm font-bold text-[#4CAF50]">
+                      {Number(item.total_price).toFixed(2)} {MANAT}
+                    </p>
+                    <p className="mt-0.5 text-xs text-neutral-400">
+                      {Number(item.product.price).toFixed(2)} {MANAT}/{item.product.type}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-1 border-t border-[#EDEEF2] pt-3 text-sm text-neutral-500">
+              Çatdırılma: {deliveryLabel}
+            </div>
+          </section>
+
+          {error ? <p className="text-sm text-red-600">{error}</p> : null}
         </div>
       </DialogContent>
     </Dialog>
   )
 }
 
-function Field({
-  label,
-  value,
-  className,
-}: {
-  label: string
-  value: string
-  className?: string
-}) {
+function Avatar({ name, src }: { name: string; src: string | null }) {
+  if (src) {
+    return <img src={src} alt="" className="size-11 shrink-0 rounded-full object-cover" />
+  }
+  const initial = name.trim().charAt(0).toUpperCase() || '?'
   return (
-    <div className={className}>
-      <p className="text-xs tracking-wide text-neutral-400 uppercase">{label}</p>
-      <p className="mt-1 text-sm font-light break-words text-[#2B3043]">{value}</p>
-    </div>
+    <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[#4CAF50] text-[17px] font-semibold text-white">
+      {initial}
+    </span>
   )
 }
 
-function Row({ label, value, strong = false }: { label: string; value: string; strong?: boolean }) {
+function InfoRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex items-center justify-between">
-      <span className={strong ? 'font-semibold text-[#2B3043]' : 'text-neutral-500'}>{label}</span>
-      <span className={strong ? 'font-semibold text-[#2B3043]' : 'font-light text-[#2B3043]'}>
-        {value}
-      </span>
+    <div className="flex gap-2">
+      <dt className="shrink-0 text-neutral-400">{label} :</dt>
+      <dd className="text-[#2B3043]">{value}</dd>
     </div>
   )
 }
