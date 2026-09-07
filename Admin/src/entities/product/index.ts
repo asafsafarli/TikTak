@@ -6,6 +6,7 @@ export {
   useRemoveProduct,
   useUpdateProduct,
 } from './api/queries'
+export { PRODUCT_MEASURE_LABEL } from './model/measure'
 export { PRODUCT_MEASURES } from './model/types'
 export type {
   Product,
