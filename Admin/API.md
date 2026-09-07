@@ -218,6 +218,23 @@ Postman kolleksiyasında "stats" nümunəsi **eyni `GET /orders/admin` endpoint-
 
 Əgər backend-də əslində ayrıca bir stats endpoint varsa (path dəqiqləşəndə), bu funksiyanı asanlıqla real API çağırışı ilə əvəz edə bilərik.
 
+### Sifarişlər səhifəsi (implement olunub)
+
+`pages/orders` → `widgets/orders-list` → `OrdersList`:
+
+- **6 statistika kartı** (`computeOrderStats`): Ümumi sifarişlər (`total`), Ümumi satış
+  (`totalRevenue`), Gözləyən (`PENDING`), Hazırlanır (`PREPARING`), Çatdırılan
+  (`DELIVERED`), Ləğv edilən (`CANCELLED`).
+- **Cədvəl** sütunları: No (`orderNumber`), Tarix (`createdAt`, `dd-mm`), Çatdırılma
+  ünvanı (`address`), Məhsul sayı (`items` üzrə `quantity` cəmi), Subtotal/Çatdırılma
+  (`total − deliveryFee` + `deliveryFee===0 ? "Pulsuz"`), Status badge, Əməliyyat.
+- Hər sütunda client-side **sıralama** (chevron) və **filtr** (funnel: mətn axtarışı;
+  Status üçün çoxseçimli). Topbar axtarışı `orderNumber` / `address` / müştəri adına baxır.
+- **Səhifələmə** page-size seçicisi ilə (5/10/20/50).
+- "Göstər" → `features/orders/detail` `OrderDetailDialog`: məhsullar, ünvan, telefon,
+  qeyd, ödəniş, cəmlər + `PUT /orders/admin/:id/status` ilə status dəyişmə.
+- Status etiketləri/rəngləri: `entities/order/model/status.ts` → `ORDER_STATUS_META`.
+
 ---
 
 ## Upload

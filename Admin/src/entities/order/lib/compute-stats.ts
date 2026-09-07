@@ -4,6 +4,10 @@ export interface OrderStats {
   total: number
   totalRevenue: number
   byStatus: Record<OrderStatus, number>
+  pending: number
+  preparing: number
+  delivered: number
+  cancelled: number
 }
 
 export function computeOrderStats(orders: Order[]): OrderStats {
@@ -21,5 +25,13 @@ export function computeOrderStats(orders: Order[]): OrderStats {
     totalRevenue += Number(order.total)
   }
 
-  return { total: orders.length, totalRevenue, byStatus }
+  return {
+    total: orders.length,
+    totalRevenue,
+    byStatus,
+    pending: byStatus.PENDING,
+    preparing: byStatus.PREPARING,
+    delivered: byStatus.DELIVERED,
+    cancelled: byStatus.CANCELLED,
+  }
 }
