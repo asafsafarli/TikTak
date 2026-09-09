@@ -43,7 +43,8 @@ npm run dev   # http://localhost:3000
 
 ## Admin panel — status
 
-Auth axını (login, sessiya, qorunan route-lar) və **beş idarəetmə səhifəsi** hazırdır:
+Auth axını (login, sessiya, qorunan route-lar, `401` → refresh → retry) və **beş
+idarəetmə səhifəsi** hazırdır. Route-lar lazy yüklənir (səhifə başına ayrı chunk).
 
 | Səhifə | Route | İmkanlar |
 | --- | --- | --- |
@@ -56,7 +57,7 @@ Auth axını (login, sessiya, qorunan route-lar) və **beş idarəetmə səhifə
 Bütün siyahılar eyni modeldədir: `shared/ui/table`, client-side filtr + səhifələmə, sabit
 sətir hündürlüyü. Endpoint-lər və səhifə təfərrüatları: [`Admin/API.md`](./Admin/API.md).
 
-Növbəti: refresh-token axını, şəkil yükləmənin (`POST /upload`) formalara bağlanması.
+Növbəti: Frontend (client sayt) — hazırda boş scaffold.
 
 ## Admin-ə UI komponenti əlavə etmək
 

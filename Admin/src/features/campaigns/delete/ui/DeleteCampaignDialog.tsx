@@ -3,7 +3,7 @@ import { AlertDialog as AlertDialogPrimitive } from 'radix-ui'
 import type { Campaign } from '@/entities/campaign'
 import { useRemoveCampaign } from '@/entities/campaign'
 import { ApiError } from '@/shared/api/client'
-import deleteIllustration from '@/features/auth/login/ui/delete.svg'
+import deleteIllustration from '@/shared/assets/delete.webp'
 
 interface DeleteCampaignDialogProps {
   open: boolean

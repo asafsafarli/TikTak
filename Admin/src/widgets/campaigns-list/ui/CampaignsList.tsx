@@ -160,6 +160,8 @@ export function CampaignsList() {
                       <img
                         src={campaign.img_url}
                         alt=""
+                        loading="lazy"
+                        decoding="async"
                         className="size-11 rounded-[8px] object-cover"
                       />
                     ) : (

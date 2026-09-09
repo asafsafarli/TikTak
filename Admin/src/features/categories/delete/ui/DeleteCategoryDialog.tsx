@@ -3,7 +3,7 @@ import { AlertDialog as AlertDialogPrimitive } from 'radix-ui'
 import type { Category } from '@/entities/category'
 import { useRemoveCategory } from '@/entities/category'
 import { ApiError } from '@/shared/api/client'
-import deleteIllustration from '@/features/auth/login/ui/delete.svg'
+import deleteIllustration from '@/shared/assets/delete.webp'
 
 interface DeleteCategoryDialogProps {
   open: boolean
