@@ -1,44 +1,7 @@
-// Landing üçün statik məzmun. Funksionallıq sonra API-yə bağlanacaq.
-
-export const HERO_SLIDES = [
-  {
-    id: "bravo-club",
-    tone: "dark" as const,
-    title: "Bravo Club",
-    subtitle: "Alış-verişdə yeni həyəcan!",
-    period: null,
-    cta: "Ətraflı",
-    href: "#",
-  },
-  {
-    id: "yeni-il",
-    tone: "red" as const,
-    title: "Bravo-da Yeni il endirimləri",
-    subtitle: null,
-    period: "26 dekabr – 8 yanvar",
-    cta: "Ətraflı",
-    href: "#",
-  },
-];
-
-export const SPECIAL_OFFERS = [
-  {
-    id: "qeyri-qida",
-    tone: "stone" as const,
-    title: "Qeyri-qidaya endirim!",
-    period: "12 dekabr – 8 yanvar",
-    badge: "MƏHSUL SEÇİMİ",
-    href: "#",
-  },
-  {
-    id: "yeni-il-offer",
-    tone: "red" as const,
-    title: "Bravo-da Yeni il endirimləri",
-    period: "26 dekabr 2024 – 8 yanvar 2025",
-    badge: null,
-    href: "#",
-  },
-];
+// Landing üçün statik məzmun.
+// Kampaniya blokları (hero + xüsusi təkliflər) artıq API-dən gəlir
+// (`@/entities/campaign`). Buradakılar API-yə bağlı olmayan bölmələrdir:
+// göstəricilər, footer, sosial linklər, naviqasiya.
 
 export const COMPANY_STATS = [
   { id: "markets", value: "137", label: "Market sayı", icon: "store" as const },
