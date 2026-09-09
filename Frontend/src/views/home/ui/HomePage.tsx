@@ -1,9 +1,19 @@
+import { SiteHeader } from "@/widgets/site-header";
+import { PromoHero } from "@/widgets/promo-hero";
+import { SpecialOffers } from "@/widgets/special-offers";
+import { CompanyStats } from "@/widgets/company-stats";
+import { SiteFooter } from "@/widgets/site-footer";
+
 export function HomePage() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-white dark:bg-black">
-      <h1 className="text-3xl font-semibold text-black dark:text-white">
-        TikTak
-      </h1>
-    </main>
+    <>
+      <SiteHeader />
+      <main className="flex-1">
+        <PromoHero />
+        <SpecialOffers />
+        <CompanyStats />
+      </main>
+      <SiteFooter />
+    </>
   );
 }
