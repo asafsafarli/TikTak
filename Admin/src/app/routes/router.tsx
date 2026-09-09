@@ -1,5 +1,6 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 import { ProtectedLayout } from './ProtectedLayout'
+import { RouteError } from './RouteError'
 import { LoginPage } from '@/pages/login'
 import { ProductsPage } from '@/pages/products'
 import { CategoriesPage } from '@/pages/categories'
@@ -8,10 +9,11 @@ import { OrdersPage } from '@/pages/orders'
 import { UsersPage } from '@/pages/users'
 
 export const router = createBrowserRouter([
-  { path: '/login', element: <LoginPage /> },
+  { path: '/login', element: <LoginPage />, errorElement: <RouteError /> },
   {
     path: '/',
     element: <ProtectedLayout />,
+    errorElement: <RouteError />,
     children: [
       { index: true, element: <Navigate to="/orders" replace /> },
       { path: 'products', element: <ProductsPage /> },

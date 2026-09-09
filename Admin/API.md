@@ -19,7 +19,7 @@ Content-Type: application/json
 Authorization: Bearer <access_token>
 ```
 
-Token-lər `localStorage`-da saxlanılır (`shared/lib/token-storage.ts`). Hazırda **refresh token axını implement edilməyib** — access token bitəndə istifadəçi yenidən login olmalıdır (refresh endpoint client tərəfdə mövcuddur: `POST /auth/refresh`, amma admin panelə hələ bağlanmayıb).
+Token-lər `localStorage`-da saxlanılır (`shared/lib/token-storage.ts`). **Refresh axını qoşuludur**: `apiFetch` `401` alanda bir dəfə `POST /auth/refresh` (`{ refresh_token }`) çağırır, uğurlu olsa hər iki token yenilənir və orijinal sorğu təkrarlanır; uğursuz olsa sessiya təmizlənir və `/login`-ə yönləndirilir (`shared/api/refresh-token.ts`). Eyni anda gələn 401-lər üçün refresh yalnız bir dəfə gedir.
 
 ---
 
