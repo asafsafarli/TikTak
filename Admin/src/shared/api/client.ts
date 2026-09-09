@@ -1,5 +1,6 @@
 import { API_BASE_URL } from '@/shared/config/env'
 import { tokenStorage } from '@/shared/lib/token-storage'
+import { refreshAccessToken } from './refresh-token'
 
 export class ApiError extends Error {
   status: number
@@ -27,23 +28,46 @@ function buildUrl(path: string, params?: Record<string, unknown>) {
   return url.toString()
 }
 
+let redirecting = false
+
+function redirectToLogin() {
+  tokenStorage.clear()
+  if (redirecting) return
+  if (typeof window !== 'undefined' && window.location.pathname !== '/login') {
+    redirecting = true
+    window.location.assign('/login')
+  }
+}
+
 export async function apiFetch<T>(path: string, options: RequestOptions = {}): Promise<T> {
   const { method = 'GET', body, params, auth = true } = options
+  const url = buildUrl(path, params)
 
-  const headers: Record<string, string> = {
-    'Content-Type': 'application/json',
+  function send() {
+    const headers: Record<string, string> = { 'Content-Type': 'application/json' }
+    if (auth) {
+      const token = tokenStorage.getAccessToken()
+      if (token) headers.Authorization = `Bearer ${token}`
+    }
+    return fetch(url, {
+      method,
+      headers,
+      body: body !== undefined ? JSON.stringify(body) : undefined,
+    })
   }
 
-  if (auth) {
-    const token = tokenStorage.getAccessToken()
-    if (token) headers.Authorization = `Bearer ${token}`
-  }
+  let response = await send()
 
-  const response = await fetch(buildUrl(path, params), {
-    method,
-    headers,
-    body: body !== undefined ? JSON.stringify(body) : undefined,
-  })
+  // Access token bitibsə: bir dəfə refresh cəhd et, alınsa sorğunu təkrarla,
+  // alınmasa sessiyanı təmizlə və login-ə yönləndir.
+  if (response.status === 401 && auth) {
+    const refreshed = await refreshAccessToken()
+    if (refreshed) {
+      response = await send()
+    } else {
+      redirectToLogin()
+    }
+  }
 
   const data = await response.json().catch(() => null)
 
