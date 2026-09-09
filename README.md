@@ -57,7 +57,15 @@ idarəetmə səhifəsi** hazırdır. Route-lar lazy yüklənir (səhifə başın
 Bütün siyahılar eyni modeldədir: `shared/ui/table`, client-side filtr + səhifələmə, sabit
 sətir hündürlüyü. Endpoint-lər və səhifə təfərrüatları: [`Admin/API.md`](./Admin/API.md).
 
-Növbəti: Frontend (client sayt) — hazırda boş scaffold.
+## Frontend (client sayt) — status
+
+Landing səhifəsi hazırdır: header, promo hero, xüsusi təkliflər, göstəricilər, footer.
+Kampaniya blokları (hero + xüsusi təkliflər) açıq `GET /campaigns` endpoint-indən
+gəlir — Server Component-də `fetch`, 5 dəqiqəlik ISR keşi, API əlçatmasa statik
+ehtiyat məzmun. Qalan endpoint-lər (`/products`, `/categories`) auth tələb edir və
+landing-də istifadə olunmur.
+
+Növbəti: auth axını və məhsul səhifələri.
 
 ## Admin-ə UI komponenti əlavə etmək
 
