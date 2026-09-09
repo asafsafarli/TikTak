@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -7,23 +7,16 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "TikTak",
-  description: "TikTak",
+  title: "TIK TAK — Onlayn Supermarket",
+  description:
+    "TIK TAK — Azərbaycanın onlayn supermarketi. Xüsusi təkliflər, kampaniyalar və gündəlik endirimlər.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="az" className={`${geistSans.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col bg-white">{children}</body>
     </html>
   );
 }
