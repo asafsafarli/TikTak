@@ -1,15 +1,27 @@
+import { lazy, Suspense } from 'react'
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 import { ProtectedLayout } from './ProtectedLayout'
 import { RouteError } from './RouteError'
-import { LoginPage } from '@/pages/login'
-import { ProductsPage } from '@/pages/products'
-import { CategoriesPage } from '@/pages/categories'
-import { CampaignsPage } from '@/pages/campaigns'
-import { OrdersPage } from '@/pages/orders'
-import { UsersPage } from '@/pages/users'
+
+// Route-lar tələb olunanda yüklənir — hər səhifə öz chunk-ında (widget-lər, dialoqlar,
+// login illüstrasiyası ilk bundle-a düşmür).
+const LoginPage = lazy(() => import('@/pages/login').then((m) => ({ default: m.LoginPage })))
+const OrdersPage = lazy(() => import('@/pages/orders').then((m) => ({ default: m.OrdersPage })))
+const CampaignsPage = lazy(() => import('@/pages/campaigns').then((m) => ({ default: m.CampaignsPage })))
+const CategoriesPage = lazy(() => import('@/pages/categories').then((m) => ({ default: m.CategoriesPage })))
+const ProductsPage = lazy(() => import('@/pages/products').then((m) => ({ default: m.ProductsPage })))
+const UsersPage = lazy(() => import('@/pages/users').then((m) => ({ default: m.UsersPage })))
 
 export const router = createBrowserRouter([
-  { path: '/login', element: <LoginPage />, errorElement: <RouteError /> },
+  {
+    path: '/login',
+    element: (
+      <Suspense fallback={null}>
+        <LoginPage />
+      </Suspense>
+    ),
+    errorElement: <RouteError />,
+  },
   {
     path: '/',
     element: <ProtectedLayout />,

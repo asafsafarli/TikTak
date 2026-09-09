@@ -3,7 +3,7 @@ import { AlertDialog as AlertDialogPrimitive } from 'radix-ui'
 import type { Product } from '@/entities/product'
 import { useRemoveProduct } from '@/entities/product'
 import { ApiError } from '@/shared/api/client'
-import deleteIllustration from '@/features/auth/login/ui/delete.svg'
+import deleteIllustration from '@/shared/assets/delete.webp'
 
 interface DeleteProductDialogProps {
   open: boolean

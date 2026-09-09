@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 import { useSession } from '@/entities/session'
 import { SearchProvider } from '@/shared/lib/search-context'
@@ -26,7 +27,9 @@ export function ProtectedLayout() {
         <div className="mx-auto flex w-full max-w-[1560px] flex-1 flex-col gap-5 px-4 pt-[104px] pb-10 lg:flex-row lg:items-start 2xl:px-0">
           <Sidebar />
           <main className="flex-1 rounded-[10px] bg-white p-10 pt-[29px] shadow-sm lg:min-h-[490px]">
-            <Outlet />
+            <Suspense fallback={<p className="text-sm text-neutral-500">Yüklənir...</p>}>
+              <Outlet />
+            </Suspense>
           </main>
         </div>
       </div>

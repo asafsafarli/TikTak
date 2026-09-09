@@ -156,6 +156,8 @@ export function CategoriesList() {
                       <img
                         src={category.img_url}
                         alt=""
+                        loading="lazy"
+                        decoding="async"
                         className="size-11 rounded-[8px] object-cover"
                       />
                     ) : (

@@ -318,7 +318,15 @@ export function UsersList() {
 
 function Avatar({ name, src }: { name: string; src: string | null }) {
   if (src) {
-    return <img src={src} alt="" className="size-9 rounded-full object-cover" />
+    return (
+      <img
+        src={src}
+        alt=""
+        loading="lazy"
+        decoding="async"
+        className="size-9 rounded-full object-cover"
+      />
+    )
   }
   const initial = name.trim().charAt(0).toUpperCase() || '?'
   return (

@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom'
 import { useSession } from '@/entities/session'
 import { LoginForm } from '@/features/auth/login'
-import loginIllustration from '@/features/auth/login/ui/login.svg'
+import loginIllustration from '@/shared/assets/login.webp'
 
 export function LoginPage() {
   const { isAuthenticated, isLoading } = useSession()
