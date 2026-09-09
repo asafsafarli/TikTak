@@ -4,8 +4,8 @@ import { Container } from "@/shared/ui/container";
 import { HERO_SLIDES } from "@/shared/config/site";
 
 const TONE: Record<string, string> = {
-  green:
-    "bg-[radial-gradient(circle_at_80%_20%,#25a04d,transparent_55%),linear-gradient(120deg,#1c8a3f,#12692f)]",
+  dark:
+    "bg-[radial-gradient(circle_at_80%_20%,#3a4056,transparent_55%),linear-gradient(120deg,#2b3043,#1f2330)]",
   red: "bg-[radial-gradient(circle_at_15%_85%,#a23a3a,transparent_50%),linear-gradient(120deg,#7c2727,#5e1d1d)]",
 };
 

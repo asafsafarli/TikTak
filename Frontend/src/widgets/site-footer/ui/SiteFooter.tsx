@@ -8,7 +8,7 @@ export function SiteFooter() {
   return (
     <footer className="mt-8 border-t border-neutral-200 bg-white">
       <Container className="py-14">
-        <p className="text-xl font-extrabold tracking-[0.08em] text-ink">
+        <p className="text-[40px] font-extrabold leading-none tracking-[0.03em] text-[#2B3043]">
           TIK TAK
         </p>
 
@@ -42,7 +42,7 @@ export function SiteFooter() {
               />
               <button
                 type="submit"
-                className="shrink-0 bg-brand px-5 text-sm font-semibold text-white transition-colors hover:bg-brand-dark"
+                className="shrink-0 bg-brand px-5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
               >
                 Göndər
               </button>

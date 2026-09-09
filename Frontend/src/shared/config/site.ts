@@ -3,7 +3,7 @@
 export const HERO_SLIDES = [
   {
     id: "bravo-club",
-    tone: "green" as const,
+    tone: "dark" as const,
     title: "Bravo Club",
     subtitle: "Alış-verişdə yeni həyəcan!",
     period: null,
@@ -57,6 +57,7 @@ export const FOOTER_SECTIONS = [
       { label: "İcarəyə verməyə yeriniz var?", href: "#" },
       { label: "Xəbərlər", href: "#" },
       { label: "Karyera", href: "#" },
+      { label: "Müştəri xidmətləri", href: "#" },
     ],
   },
   {
@@ -65,7 +66,6 @@ export const FOOTER_SECTIONS = [
       { label: "Onlayn market", href: "#" },
       { label: "Marketlərimiz", href: "#" },
       { label: "Korporativ satış", href: "#" },
-      { label: "Müştəri xidmətləri", href: "#" },
     ],
   },
   {
