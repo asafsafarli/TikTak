@@ -218,23 +218,6 @@ Postman kolleksiyasında "stats" nümunəsi **eyni `GET /orders/admin` endpoint-
 
 Əgər backend-də əslində ayrıca bir stats endpoint varsa (path dəqiqləşəndə), bu funksiyanı asanlıqla real API çağırışı ilə əvəz edə bilərik.
 
-### Sifarişlər səhifəsi (implement olunub)
-
-`pages/orders` → `widgets/orders-list` → `OrdersList`:
-
-- **6 statistika kartı** (`computeOrderStats`): Ümumi sifarişlər (`total`), Ümumi satış
-  (`totalRevenue`), Gözləyən (`PENDING`), Hazırlanır (`PREPARING`), Çatdırılan
-  (`DELIVERED`), Ləğv edilən (`CANCELLED`).
-- **Cədvəl** sütunları: No (`orderNumber`), Tarix (`createdAt`, `dd-mm`), Çatdırılma
-  ünvanı (`address`), Məhsul sayı (`items` üzrə `quantity` cəmi), Subtotal/Çatdırılma
-  (`total − deliveryFee` + `deliveryFee===0 ? "Pulsuz"`), Status badge, Əməliyyat.
-- Hər sütunda client-side **sıralama** (chevron) və **filtr** (funnel: mətn axtarışı;
-  Status üçün çoxseçimli). Topbar axtarışı `orderNumber` / `address` / müştəri adına baxır.
-- **Səhifələmə** page-size seçicisi ilə (5/10/20/50).
-- "Göstər" → `features/orders/detail` `OrderDetailDialog`: məhsullar, ünvan, telefon,
-  qeyd, ödəniş, cəmlər + `PUT /orders/admin/:id/status` ilə status dəyişmə.
-- Status etiketləri/rəngləri: `entities/order/model/status.ts` → `ORDER_STATUS_META`.
-
 ---
 
 ## Upload
@@ -265,3 +248,47 @@ Qayıdan `url` — Product/Category/Campaign formalarında `img_url` sahəsinə 
 | Upload | — | `src/shared/api/upload.ts` |
 
 Hər entity-nin `api/` qovluğunda iki fayl olur: xam `fetch` funksiyaları (`*.ts`) və React Query hook-ları (`queries.ts`) — keşləmə, təkrar sorğuların qarşısını almaq və mutation-dan sonra avtomatik yeniləmə üçün.
+
+---
+
+## Admin panel səhifələri
+
+Beş siyahı səhifəsinin hamısı eyni model üzərində qurulub: səhifə başlığı (`28px` + alt
+xətt), `shared/ui/table` cədvəli, **client-side** filtr + səhifələmə, sətir hündürlüyü sabit
+qalsın deyə boş "filler" sətirlər, həmişə görünən nəticə sayı + naviqasiya. Sidebar sırası:
+**Sifarişlər** birinci; `/` → `/orders` yönləndirir. Topbar axtarışı hər səhifədə əsas
+ad/başlıq sahəsinə baxır.
+
+| Səhifə | Route | Widget | Başlıq ikonları | Səhifə ölçüsü | CRUD |
+|---|---|---|---|---|---|
+| Sifarişlər | `/orders` | `widgets/orders-list` | sıralama ↕ + funnel ▽ | seçici (5/10/20/50) | status dəyişmə |
+| Kampaniyalar | `/campaigns` | `widgets/campaigns-list` | axtarış 🔍 | 7 | yarat / düzəlt / sil |
+| Kateqoriyalar | `/categories` | `widgets/categories-list` | axtarış 🔍 | 5 | yarat / düzəlt / sil |
+| Məhsullar | `/products` | `widgets/products-list` | axtarış 🔍 | 5 | yarat / düzəlt / sil |
+| İstifadəçilər | `/users` | `widgets/users-list` | sıralama ↕ + funnel ▽ | 5 | yoxdur (yalnız `GET`) |
+
+### Sifarişlər
+- 6 statistika kartı — `computeOrderStats`: Ümumi sifarişlər, Ümumi satış, Gözləyən
+  (`PENDING`), Hazırlanır (`PREPARING`), Çatdırılan (`DELIVERED`), Ləğv edilən (`CANCELLED`).
+- Sütunlar: No, Tarix (`dd-mm`), Çatdırılma ünvanı, Məhsul sayı (`quantity` cəmi),
+  Subtotal/Çatdırılma (`total − deliveryFee`, pulsuzsa "Pulsuz"), Status badge, Əməliyyat.
+- Status etiketləri/rəngləri: `entities/order/model/status.ts` → `ORDER_STATUS_META`.
+- "Göstər" → `features/orders/detail/OrderDetailDialog`: başlıqda avatar + status seçici +
+  ümumi məbləğ; boz fonda ağ kartlar (Sifariş Məlumatları, Məhsullar). Status dəyişmə
+  `PUT /orders/admin/:id/status`.
+
+### Kampaniyalar / Kateqoriyalar / Məhsullar
+- Sütunlar: Sıra, Şəkil (thumbnail), Ad, Açıqlama (2 sətir); Məhsullar-da əlavə: Qiymət,
+  Kateqoriya, Növ (bənövşəyi badge); sonra Tarix, Düzəlt / Sil.
+- Sütun üzrə axtarış popover-i: Ad + Açıqlama (Məhsullar-da həm də Kateqoriya, Növ).
+- Yaratma/düzəltmə `features/<resurs>/upsert`, silmə təsdiqi `features/<resurs>/delete`.
+- Növ etiketləri: `entities/product/model/measure.ts` → `PRODUCT_MEASURE_LABEL`.
+- Məhsul siyahısı `GET /admin/products?limit=1000` çəkir və hər şeyi client-side edir
+  (API-nin server-side paginasiya/axtarışı hələ istifadə olunmur).
+
+### İstifadəçilər
+- Sütunlar: Sıra, Avatar (baş hərf / `img_url`), Ad Soyad, Telefon, Ünvan (boşdursa
+  "Qeyd olunmayıb"), Rol (yaşıl konturlu badge), Əməliyyat.
+- Sıralama: Ad Soyad, Telefon. Filtr: Ad Soyad / Telefon / Ünvan mətn, Rol çoxseçimli
+  (rollar datadan avtomatik yığılır).
+- "Göstər" → `features/users/detail/UserDetailDialog` — yalnız oxu.
