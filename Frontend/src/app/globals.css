@@ -7,7 +7,7 @@
   --color-ink: #1a1a1a;
   --color-muted: #5b6470;
 
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-roboto), ui-sans-serif, system-ui, sans-serif;
 }
 
 html {

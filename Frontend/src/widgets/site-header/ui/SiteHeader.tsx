@@ -1,35 +1,35 @@
 import Link from "next/link";
-import { LogIn, ShoppingBasket, User } from "lucide-react";
 import { Container } from "@/shared/ui/container";
+import { BasketIcon, FavoritesIcon, UserIcon } from "@/shared/ui/icons";
 import { HEADER_NAV } from "@/shared/config/site";
 
 const ICONS = {
-  user: User,
-  login: LogIn,
-  basket: ShoppingBasket,
+  user: UserIcon,
+  favorites: FavoritesIcon,
+  basket: BasketIcon,
 };
 
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-neutral-200 bg-white/90 backdrop-blur">
-      <Container className="flex h-16 items-center justify-between">
+      <Container className="flex h-[88px] items-center justify-between">
         <Link
           href="/"
-          className="text-xl font-extrabold tracking-[0.08em] text-ink"
+          className="font-extrabold leading-none tracking-[0.03em] text-[#2B3043] text-[28px] sm:text-[40px]"
         >
           TIK TAK
         </Link>
 
-        <nav className="flex items-center gap-1 sm:gap-2">
+        <nav className="flex items-center gap-4 sm:gap-7">
           {HEADER_NAV.map((item) => {
             const Icon = ICONS[item.icon];
             return (
               <Link
                 key={item.label}
                 href={item.href}
-                className="flex items-center gap-1.5 rounded-lg px-2.5 py-2 text-sm text-muted transition-colors hover:bg-brand-soft hover:text-brand-dark"
+                className="flex items-center gap-2 text-[14px] font-normal leading-none tracking-normal text-[#2B3043] transition-opacity hover:opacity-70"
               >
-                <Icon className="size-4" strokeWidth={1.75} />
+                <Icon className="h-4 w-auto shrink-0" />
                 <span className="hidden sm:inline">{item.label}</span>
               </Link>
             );
