@@ -183,6 +183,7 @@ Category ilə eyni CRUD forması.
 | Əməliyyat | Endpoint |
 |---|---|
 | Siyahı | `GET /orders/admin` |
+| Statistika | `GET /orders/admin/stats` |
 | Status dəyiş | `PUT /orders/admin/:id/status` |
 
 **Status body**
@@ -210,13 +211,29 @@ interface Order {
 }
 ```
 
-### ⚠️ Statistika (TOTAL/PENDING/PREPARING/DELIVERED/TOTAL_REVENUE)
+### Statistika — `GET /orders/admin/stats`
 
-Postman kolleksiyasında "stats" nümunəsi **eyni `GET /orders/admin` endpoint-inə** göndərilib, amma cavabı fərqlidir (sifariş siyahısı yerinə `{TOTAL, PENDING, ...}` obyekti). Bu, real ayrıca bir path-ın (məs. `/orders/admin/stats`) sənədləşdirmə zamanı səhv qeyd olunması kimi görünür və dəqiqləşdirilə bilmədi.
+Postman kolleksiyasında bu sorğunun **görünən URL-i səhvən `/orders/admin`-dir**, amma
+yadda saxlanmış cavabın `originalRequest.url`-i `/orders/admin/stats`-dır. Cavab:
 
-**Qərar:** ayrıca stats endpoint-inə etibar etmirik. Bunun əvəzinə `GET /orders/admin`-dən gələn tam sifariş siyahısından statistikanı **client tərəfdə** hesablayırıq: `entities/order/lib/compute-stats.ts` → `computeOrderStats(orders)`.
+```json
+{ "TOTAL": 1, "DELIVERED": 0, "PENDING": 0, "PREPARING": 1, "TOTAL_REVENUE": 0 }
+```
 
-Əgər backend-də əslində ayrıca bir stats endpoint varsa (path dəqiqləşəndə), bu funksiyanı asanlıqla real API çağırışı ilə əvəz edə bilərik.
+`CONFIRMED`, `READY`, `CANCELLED` sayları **yoxdur**.
+
+**Qərar — client tərəfdə hesablayırıq** (`entities/order/lib/compute-stats.ts` →
+`computeOrderStats(orders)`):
+
+- Sifarişlər səhifəsi onsuz da cədvəl, sıralama, filtr və səhifələmə üçün **tam siyahını**
+  (`GET /orders/admin`, server-side paginasiya yoxdur) yükləyir — statistika həmin
+  siyahıdan pulsuz çıxır.
+- 6-cı kart "Ləğv edilən" (`CANCELLED`) stats endpoint-ində yoxdur; client hesablama
+  6 kartın hamısını verir.
+- Yəni stats endpoint-i çağırmaq **əlavə sorğu, az məlumat** deməkdir.
+
+Gələcəkdə sifariş sayı çox böyüyüb server-side paginasiyaya keçilsə, `GET /orders/admin/stats`
+(+ `CANCELLED` üçün fallback) istifadə etmək məntiqli olar.
 
 ---
 
