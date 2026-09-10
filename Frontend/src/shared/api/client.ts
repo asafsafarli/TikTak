@@ -20,6 +20,10 @@ interface RequestOptions {
   // Client tərəfdə saxlanan access token-i əlavə et; 401-də bir dəfə refresh
   // et, sonra sorğunu təkrarla, alınmasa sessiyanı təmizlə və /login-ə yönlət.
   auth?: boolean;
+  // `auth` sorğularında refresh alınmasa /login-ə yönləndir (default: true).
+  // Qonağa da açıq olan səhifələr üçün `false` ver — bu halda 401 sadəcə
+  // `ApiError` kimi atılır və çağıran ehtiyat məzmun göstərə bilər.
+  redirectOnAuthFail?: boolean;
   // Açıq bearer token (məs. RSC-də serverdən gələn token üçün).
   token?: string;
   // Server Component keş ömrü (saniyə). Yalnız serverdə fetch üçün.
@@ -56,8 +60,15 @@ export async function apiFetch<T>(
   path: string,
   options: RequestOptions = {},
 ): Promise<T> {
-  const { method = "GET", body, params, auth = false, token, revalidate } =
-    options;
+  const {
+    method = "GET",
+    body,
+    params,
+    auth = false,
+    redirectOnAuthFail = true,
+    token,
+    revalidate,
+  } = options;
   const url = buildUrl(path, params);
 
   function send() {
@@ -81,7 +92,7 @@ export async function apiFetch<T>(
     const refreshed = await refreshAccessToken();
     if (refreshed) {
       response = await send();
-    } else {
+    } else if (redirectOnAuthFail) {
       redirectToLogin();
     }
   }
