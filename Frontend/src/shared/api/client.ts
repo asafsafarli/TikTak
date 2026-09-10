@@ -1,4 +1,6 @@
 import { API_BASE_URL } from "@/shared/config/env";
+import { tokenStorage } from "@/shared/lib/token-storage";
+import { refreshAccessToken } from "./refresh-token";
 import type { ApiEnvelope } from "./types";
 
 export class ApiError extends Error {
@@ -15,8 +17,12 @@ interface RequestOptions {
   method?: "GET" | "POST" | "PUT" | "DELETE";
   body?: unknown;
   params?: Record<string, string | number | undefined>;
+  // Client tərəfdə saxlanan access token-i əlavə et; 401-də bir dəfə refresh
+  // et, sonra sorğunu təkrarla, alınmasa sessiyanı təmizlə və /login-ə yönlət.
+  auth?: boolean;
+  // Açıq bearer token (məs. RSC-də serverdən gələn token üçün).
   token?: string;
-  // Server Component-lərdə keş ömrü (saniyə). `0` = keşləmə.
+  // Server Component keş ömrü (saniyə). Yalnız serverdə fetch üçün.
   revalidate?: number | false;
 }
 
@@ -30,6 +36,18 @@ function buildUrl(path: string, params?: RequestOptions["params"]) {
   return url.toString();
 }
 
+function redirectToLogin() {
+  tokenStorage.clear();
+  if (
+    typeof window !== "undefined" &&
+    !window.location.pathname.startsWith("/login")
+  ) {
+    // Sessiya bitib — bütün client state-i sıfırlamaq üçün tam reload ilə keçirik.
+    // eslint-disable-next-line @next/next/no-location-assign-relative-destination
+    window.location.assign("/login");
+  }
+}
+
 /**
  * Backend zərfini (`{ message, data, result }`) açıb yalnız `data`-nı qaytarır.
  * Uğursuz cavabda `ApiError` atır.
@@ -38,19 +56,35 @@ export async function apiFetch<T>(
   path: string,
   options: RequestOptions = {},
 ): Promise<T> {
-  const { method = "GET", body, params, token, revalidate } = options;
+  const { method = "GET", body, params, auth = false, token, revalidate } =
+    options;
+  const url = buildUrl(path, params);
 
-  const headers: Record<string, string> = {
-    "Content-Type": "application/json",
-  };
-  if (token) headers.Authorization = `Bearer ${token}`;
+  function send() {
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+    };
+    const bearer = token ?? (auth ? tokenStorage.getAccessToken() : null);
+    if (bearer) headers.Authorization = `Bearer ${bearer}`;
 
-  const response = await fetch(buildUrl(path, params), {
-    method,
-    headers,
-    body: body !== undefined ? JSON.stringify(body) : undefined,
-    next: revalidate === undefined ? undefined : { revalidate },
-  });
+    return fetch(url, {
+      method,
+      headers,
+      body: body !== undefined ? JSON.stringify(body) : undefined,
+      next: revalidate === undefined ? undefined : { revalidate },
+    });
+  }
+
+  let response = await send();
+
+  if (response.status === 401 && auth) {
+    const refreshed = await refreshAccessToken();
+    if (refreshed) {
+      response = await send();
+    } else {
+      redirectToLogin();
+    }
+  }
 
   const payload = (await response.json().catch(() => null)) as
     | ApiEnvelope<T>

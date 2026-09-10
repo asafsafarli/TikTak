@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import { SessionProvider } from "@/entities/session";
 import "./globals.css";
 
 const roboto = Roboto({
   variable: "--font-roboto",
   subsets: ["latin"],
-  weight: ["400", "500", "700", "800"],
+  weight: ["300", "400", "500", "700", "800"],
   display: "swap",
 });
 
@@ -18,7 +19,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="az" className={`${roboto.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col bg-white">{children}</body>
+      <body className="flex min-h-full flex-col bg-white">
+        <SessionProvider>{children}</SessionProvider>
+      </body>
     </html>
   );
 }
