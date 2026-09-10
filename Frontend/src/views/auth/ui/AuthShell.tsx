@@ -41,16 +41,16 @@ export function AuthShell({ active, children }: AuthShellProps) {
       </aside>
 
       <div className="flex items-center justify-center px-6 py-10 sm:px-10 sm:py-12 lg:px-16">
-        <div className="w-full max-w-[665px]">
-            <nav className="flex gap-8 border-b border-neutral-200">
+        <div className="w-full max-w-[566px]">
+            <nav className="flex justify-center gap-[clamp(1.75rem,9vw,138px)] border-b border-neutral-200">
               {TABS.map((tab) => (
                 <Link
                   key={tab.view}
                   href={tab.href}
-                  className={`-mb-px border-b-2 pb-3 text-[15px] transition-colors ${
+                  className={`-mb-px whitespace-nowrap border-b-2 pb-3 text-[26px] font-normal leading-none tracking-normal text-[#1A1D28] ${
                     tab.view === active
-                      ? "border-leaf font-semibold text-ink"
-                      : "border-transparent text-muted hover:text-ink"
+                      ? "border-[#92D871]"
+                      : "border-transparent"
                   }`}
                 >
                   {tab.label}
@@ -60,18 +60,21 @@ export function AuthShell({ active, children }: AuthShellProps) {
 
             <div className="mt-8">{children}</div>
 
-            <p className="mt-4 text-sm text-muted">
+            <p className="mt-4 text-[18px] font-light leading-none text-muted">
               {active === "login" ? (
                 <>
                   Hesabın yoxdursa{" "}
-                  <Link href="/register" className="font-semibold text-leaf">
+                  <Link
+                    href="/register"
+                    className="font-medium text-[#92D871]"
+                  >
                     Qeydiyyatdan keç
                   </Link>
                 </>
               ) : (
                 <>
                   Hesabın varsa{" "}
-                  <Link href="/login" className="font-semibold text-leaf">
+                  <Link href="/login" className="font-medium text-[#92D871]">
                     Daxil ol
                   </Link>
                 </>

@@ -26,6 +26,7 @@ export function RegisterForm() {
         required
         autoComplete="name"
         placeholder="Ad, Soyad"
+        className="placeholder:font-normal placeholder:text-[#1A1D28]/[0.27]"
         value={fullName}
         onChange={(event) => setFullName(event.target.value)}
       />
