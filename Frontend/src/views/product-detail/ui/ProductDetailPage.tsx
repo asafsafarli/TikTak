@@ -2,11 +2,14 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { ArrowLeft, Heart } from "lucide-react";
 import { SiteHeader } from "@/widgets/site-header";
+import { CategoryPromo } from "@/widgets/category-promo";
+import { CategorySidebar, useVisibleCategories } from "@/widgets/category-sidebar";
 import { CartSidebar } from "@/widgets/cart-sidebar";
 import { Container } from "@/shared/ui/container";
 import { QuantityStepper } from "@/shared/ui/quantity-stepper";
-import { FavoritesIcon } from "@/shared/ui/icons";
 import { useBasket } from "@/entities/basket";
 import { useFavorite } from "@/entities/favorite";
 import {
@@ -16,6 +19,7 @@ import {
   type Product,
 } from "@/entities/product";
 import { formatPrice } from "@/shared/lib/format-price";
+import { ProductImageModal } from "./ProductImageModal";
 
 function fallbackFor(productId: number): Product {
   return (
@@ -25,9 +29,13 @@ function fallbackFor(productId: number): Product {
 }
 
 export function ProductDetailPage({ productId }: { productId: number }) {
+  const router = useRouter();
   // `CategoryDetailPage`-in eyni ehtiyat-siyahı naxışı: API əlçatmasa (və ya
   // qonaq token-siz açsa) ehtiyat məhsulla açılır.
   const [product, setProduct] = useState<Product>(() => fallbackFor(productId));
+  const [selectedQty, setSelectedQty] = useState(1);
+  const [isImageOpen, setIsImageOpen] = useState(false);
+  const [zoom, setZoom] = useState(1);
 
   useEffect(() => {
     let active = true;
@@ -43,9 +51,9 @@ export function ProductDetailPage({ productId }: { productId: number }) {
     };
   }, [productId]);
 
-  const { quantityOf, addOne, removeOne } = useBasket();
+  const { visibleCategories } = useVisibleCategories();
+  const { addOne } = useBasket();
   const { isFavorite, toggle } = useFavorite();
-  const quantity = quantityOf(product.id);
   const favorite = isFavorite(product.id);
 
   return (
@@ -64,73 +72,97 @@ export function ProductDetailPage({ productId }: { productId: number }) {
             <Link href={`/category/${product.category.id}`} className="hover:opacity-70">
               {product.category.name}
             </Link>
-            {" / "}
-            <span>{product.title}</span>
           </nav>
 
           <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:gap-5">
-            <div className="flex flex-1 flex-col gap-6 rounded-[10px] bg-white p-6 shadow-[0px_0px_10px_0px_#0000001C] sm:flex-row">
-              <span className="mx-auto flex h-[240px] w-[240px] shrink-0 items-center justify-center overflow-hidden rounded-lg sm:mx-0">
-                {product.img_url ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={product.img_url}
-                    alt={product.title}
-                    className="size-full object-contain"
-                  />
-                ) : (
-                  <span aria-hidden className="text-5xl font-extrabold text-neutral-300">
-                    {product.title.charAt(0)}
-                  </span>
-                )}
-              </span>
+            <div className="flex flex-col gap-5 lg:w-[338px] lg:shrink-0">
+              <CategorySidebar
+                categories={visibleCategories}
+                activeCategoryId={product.category.id}
+              />
+              <CategoryPromo className="lg:shrink-0" />
+            </div>
 
-              <div className="flex flex-1 flex-col gap-4">
-                <div className="flex flex-col gap-1">
+            <div className="flex-1 rounded-[10px] bg-white p-8 shadow-[0px_0px_10px_0px_#0000001C]">
+              <div className="flex items-center justify-between">
+                <button
+                  type="button"
+                  onClick={() => router.back()}
+                  className="flex items-center gap-2 rounded-full bg-neutral-100 px-4 py-2 text-[13px] font-medium text-ink transition-colors hover:bg-neutral-200/70"
+                >
+                  <ArrowLeft className="size-4" />
+                  geri qayıt
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => toggle(product)}
+                  aria-label={favorite ? "Siyahımdan çıxar" : "Siyahıma əlavə et"}
+                  aria-pressed={favorite}
+                  className={`flex size-12 items-center justify-center rounded-full transition-colors ${
+                    favorite ? "text-[#F0847A]" : "text-ink hover:bg-neutral-100"
+                  }`}
+                >
+                  <Heart className="size-7" fill={favorite ? "currentColor" : "none"} />
+                </button>
+              </div>
+
+              <div className="mt-8 flex flex-col gap-8 sm:flex-row">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setZoom(1);
+                    setIsImageOpen(true);
+                  }}
+                  aria-label="Şəkli böyüt"
+                  className="mx-auto flex h-[280px] w-[280px] shrink-0 cursor-zoom-in items-center justify-center overflow-hidden rounded-lg sm:mx-0"
+                >
+                  {product.img_url ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={product.img_url}
+                      alt={product.title}
+                      className="size-full object-contain"
+                    />
+                  ) : (
+                    <span aria-hidden className="text-6xl font-extrabold text-neutral-300">
+                      {product.title.charAt(0)}
+                    </span>
+                  )}
+                </button>
+
+                <div className="flex flex-1 flex-col gap-4">
                   <h1 className="text-[24px] font-bold leading-tight text-ink">
                     {product.title}
                   </h1>
+
+                  {product.description ? (
+                    <p className="text-[14px] leading-relaxed text-muted">
+                      {product.description}
+                    </p>
+                  ) : null}
+
                   <span className="text-[20px] font-semibold text-ink">
                     {formatPrice(product.price)}
                   </span>
-                </div>
 
-                {product.description ? (
-                  <p className="text-[14px] leading-relaxed text-muted">
-                    {product.description}
-                  </p>
-                ) : null}
-
-                <div className="flex flex-wrap items-center gap-3">
-                  {quantity > 0 ? (
-                    <QuantityStepper
-                      quantity={quantity}
-                      unitLabel={unitLabel(product.type)}
-                      onIncrement={() => addOne(product)}
-                      onDecrement={() => removeOne(product.id)}
-                      className="w-fit bg-neutral-100 px-2 py-1.5"
-                    />
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={() => addOne(product)}
-                      className="rounded-full bg-leaf px-5 py-2.5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
-                    >
-                      Səbətə əlavə et
-                    </button>
-                  )}
+                  <QuantityStepper
+                    quantity={selectedQty}
+                    unitLabel={unitLabel(product.type)}
+                    onIncrement={() => setSelectedQty((qty) => qty + 1)}
+                    onDecrement={() => setSelectedQty((qty) => Math.max(1, qty - 1))}
+                    className="w-fit bg-neutral-100 px-2 py-1.5"
+                  />
 
                   <button
                     type="button"
-                    onClick={() => toggle(product)}
-                    className={`flex items-center gap-2 rounded-full border px-4 py-2 text-[14px] font-medium transition-colors ${
-                      favorite
-                        ? "border-transparent bg-[#F0847A]/10 text-[#F0847A]"
-                        : "border-neutral-200 text-ink hover:bg-neutral-100"
-                    }`}
+                    onClick={() => {
+                      for (let i = 0; i < selectedQty; i += 1) addOne(product);
+                      setSelectedQty(1);
+                    }}
+                    className="w-fit rounded-full bg-leaf px-5 py-2.5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
                   >
-                    <FavoritesIcon className="size-4" />
-                    {favorite ? "Siyahımdan çıxar" : "Siyahıma əlavə et"}
+                    Səbətə əlavə et
                   </button>
                 </div>
               </div>
@@ -140,6 +172,16 @@ export function ProductDetailPage({ productId }: { productId: number }) {
           </div>
         </Container>
       </main>
+
+      {isImageOpen ? (
+        <ProductImageModal
+          imageUrl={product.img_url}
+          title={product.title}
+          zoom={zoom}
+          onZoomChange={setZoom}
+          onClose={() => setIsImageOpen(false)}
+        />
+      ) : null}
     </>
   );
 }

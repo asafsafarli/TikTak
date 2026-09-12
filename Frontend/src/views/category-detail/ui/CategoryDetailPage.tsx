@@ -4,68 +4,15 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { SiteHeader } from "@/widgets/site-header";
 import { CategoryPromo } from "@/widgets/category-promo";
-import { CategorySidebar } from "@/widgets/category-sidebar";
+import { CategorySidebar, useVisibleCategories } from "@/widgets/category-sidebar";
 import { ProductGrid } from "@/widgets/product-grid";
 import { CartSidebar } from "@/widgets/cart-sidebar";
 import { Container } from "@/shared/ui/container";
-import {
-  FALLBACK_CATEGORIES,
-  getCategories,
-  type Category,
-} from "@/entities/category";
 import { FALLBACK_PRODUCTS, getProducts, type Product } from "@/entities/product";
 
 export function CategoryDetailPage({ categoryId }: { categoryId: number }) {
-  // `/category` səhifəsindəki eyni ehtiyat-siyahı naxışı: API əlçatmasa (və ya
-  // qonaq token-siz açsa) sol sütun ehtiyat kateqoriya siyahısı ilə açılır.
-  const [categories, setCategories] = useState<Category[]>(FALLBACK_CATEGORIES);
-
-  useEffect(() => {
-    let active = true;
-    getCategories()
-      .then((data) => {
-        if (active && data.length > 0) setCategories(data);
-      })
-      .catch(() => {
-        /* 401 / şəbəkə xətası — ehtiyat siyahı qalır */
-      });
-    return () => {
-      active = false;
-    };
-  }, []);
-
+  const { categories, visibleCategories } = useVisibleCategories();
   const activeCategory = categories.find((category) => category.id === categoryId);
-
-  // Sidebar yalnız məhsulu olan kateqoriyaları göstərir. Hansı kateqoriyalarda
-  // məhsul olduğunu bilmək üçün geniş (kateqoriya filtri olmadan) bir sorğu
-  // atılır və nəticədəki məhsulların `category.id`-ləri toplanır — məhsul
-  // sayı üçün ayrıca endpoint olmadığından bu, ən yaxın praktiki yoldur
-  // (ilk səhifədən kənarda qalan məhsulların kateqoriyaları görünməyə bilər).
-  const [categoryIdsWithProducts, setCategoryIdsWithProducts] = useState(
-    () => new Set(FALLBACK_PRODUCTS.map((product) => product.category.id)),
-  );
-
-  useEffect(() => {
-    let active = true;
-    getProducts({ limit: 100 })
-      .then((data) => {
-        if (active && data.length > 0) {
-          setCategoryIdsWithProducts(
-            new Set(data.map((product) => product.category.id)),
-          );
-        }
-      })
-      .catch(() => {
-        /* 401 / şəbəkə xətası — ehtiyat siyahıdan hesablanan set qalır */
-      });
-    return () => {
-      active = false;
-    };
-  }, []);
-
-  const visibleCategories = categories.filter((category) =>
-    categoryIdsWithProducts.has(category.id),
-  );
 
   return (
     <>
