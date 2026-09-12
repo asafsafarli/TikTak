@@ -1,0 +1,81 @@
+import type { Product } from "./types";
+
+// `GET /products` qonaq/şəbəkə xətasında ehtiyat siyahı olaraq istifadə
+// olunur. Hamısı real "Meyvələr və Tərəvəzlər" (`id: 42`, bax
+// `entities/category/model/fallback.ts`) kateqoriyasına aiddir — kateqoriya
+// sidebar-ı yalnız məhsulu olan kateqoriyaları göstərir, ona görə bu id real
+// kateqoriya siyahısındakı biri ilə üst-üstə düşməlidir.
+export const FALLBACK_PRODUCTS: Product[] = [
+  {
+    id: 1,
+    title: "Qızıl əhmədi alması 1 kq",
+    img_url: null,
+    description: null,
+    price: "3.30",
+    type: "kg",
+    category: { id: 42, name: "Meyvələr və Tərəvəzlər" },
+  },
+  {
+    id: 2,
+    title: "Banan 1 kq",
+    img_url: null,
+    description: null,
+    price: "4.10",
+    type: "kg",
+    category: { id: 42, name: "Meyvələr və Tərəvəzlər" },
+  },
+  {
+    id: 3,
+    title: "Yerli armud 1 kq",
+    img_url: null,
+    description: null,
+    price: "3.80",
+    type: "kg",
+    category: { id: 42, name: "Meyvələr və Tərəvəzlər" },
+  },
+  {
+    id: 4,
+    title: "Naringi 1 kq",
+    img_url: null,
+    description: null,
+    price: "2.90",
+    type: "kg",
+    category: { id: 42, name: "Meyvələr və Tərəvəzlər" },
+  },
+  {
+    id: 5,
+    title: "Ağ üzüm 500 qr",
+    img_url: null,
+    description: null,
+    price: "3.50",
+    type: "gr",
+    category: { id: 42, name: "Meyvələr və Tərəvəzlər" },
+  },
+  {
+    id: 6,
+    title: "Gilas 1 kq",
+    img_url: null,
+    description: null,
+    price: "9.90",
+    type: "kg",
+    category: { id: 42, name: "Meyvələr və Tərəvəzlər" },
+  },
+  {
+    id: 7,
+    title: "Şaftalı 1 kq",
+    img_url: null,
+    description: null,
+    price: "4.60",
+    type: "kg",
+    category: { id: 42, name: "Meyvələr və Tərəvəzlər" },
+  },
+  {
+    id: 8,
+    title: "Limon 500 qr",
+    img_url: null,
+    description: null,
+    price: "2.20",
+    type: "gr",
+    category: { id: 42, name: "Meyvələr və Tərəvəzlər" },
+  },
+];

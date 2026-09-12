@@ -5,16 +5,13 @@ interface CategoryGridProps {
   categories: Category[];
 }
 
-// Kateqoriya detal / məhsul route-u hələ yoxdur — hazırda hamısı `#`-ə gedir.
-const HREF = "#";
-
 export function CategoryGrid({ categories }: CategoryGridProps) {
   return (
     <ul className="grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
       {categories.map((category) => (
         <li key={category.id}>
           <Link
-            href={HREF}
+            href={`/category/${category.id}`}
             className="group flex h-full flex-col items-center gap-2.5 rounded-xl bg-white p-3 text-center shadow-[0_1px_4px_rgba(0,0,0,0.06)] transition-shadow hover:shadow-[0_6px_22px_rgba(0,0,0,0.10)]"
           >
             <span className="flex aspect-square w-full items-center justify-center overflow-hidden rounded-lg bg-neutral-50">
