@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import { SessionProvider } from "@/entities/session";
+import { BasketProvider } from "@/entities/basket";
 import "./globals.css";
 
 const roboto = Roboto({
@@ -20,7 +21,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="az" className={`${roboto.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-white">
-        <SessionProvider>{children}</SessionProvider>
+        <SessionProvider>
+          <BasketProvider>{children}</BasketProvider>
+        </SessionProvider>
       </body>
     </html>
   );

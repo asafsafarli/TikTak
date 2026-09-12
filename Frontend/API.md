@@ -39,9 +39,9 @@ Bütün cavablar eyni zərfə sarılıb: `{ message, data, result }`. `apiFetch`
 | Auth | `POST /auth/login`, `/auth/signup`, `/auth/refresh` | ✅ Qoşulub | `entities/session` |
 | Profile (oxu) | `GET /profile` | ✅ Qoşulub (yalnız sessiya doğrulaması üçün) | `entities/session` |
 | Profile (redaktə) | `PUT /profile` | ⏳ Qoşulmayıb | — |
-| Products | `GET /products`, `GET /products/:id` | ⏳ Qoşulmayıb | — |
+| Products | `GET /products` (auth + fallback siyahı, `category_id` ilə) | ✅ Qoşulub | `entities/product` |
 | Favorites | `POST /products/:id/favorite`, `GET /products/favorites` | ⏳ Qoşulmayıb | — |
-| Basket | `GET /basket`, `POST /basket/:id/add`, `POST /basket/:id/remove`, `DELETE /basket/:id/remove-all`, `DELETE /basket/clear` | ⏳ Qoşulmayıb | — |
+| Basket | `GET /basket`, `POST /basket/:id/add`, `POST /basket/:id/remove`, `DELETE /basket/:id/remove-all`, `DELETE /basket/clear` | ✅ Qoşulub (yalnız girişli istifadəçi — qonaq üçün lokal/yaddaş səbəti) | `entities/basket` |
 | Orders | `POST /orders/checkout`, `GET /orders/user`, `GET /orders/user/:id` | ⏳ Qoşulmayıb | — |
 | Upload | `POST /upload` | ⏳ Qəsdən qoşulmayıb — `img_url` sahələri (olsaydı, profil şəkli kimi) sadə URL input olaraq qalacaq, fayl seçici yoxdur (Admin panelindəki qərarla eyni) | — |
 
@@ -383,9 +383,9 @@ Tək sifarişin detalı — yuxarıdakı siyahı elementinin eynisi, `data` bir 
 | Auth/Profile | `entities/session` | `src/entities/session` |
 | Categories | `entities/category` | `src/entities/category` |
 | Campaigns | `entities/campaign` | `src/entities/campaign` |
-| Products | `entities/product` | `src/entities/product` *(hələ yaradılmayıb)* |
+| Products | `entities/product` | `src/entities/product` |
 | Favorites | `entities/favorite` və ya `entities/product` içində | *(hələ yaradılmayıb)* |
-| Basket | `entities/basket` | *(hələ yaradılmayıb)* |
+| Basket | `entities/basket` | `src/entities/basket` |
 | Orders | `entities/order` | *(hələ yaradılmayıb)* |
 | Upload | — | `shared/api/upload.ts` *(hələ yaradılmayıb)* |
 

@@ -6,6 +6,7 @@ import { Container } from "@/shared/ui/container";
 import { BasketIcon, FavoritesIcon, UserIcon } from "@/shared/ui/icons";
 import { HEADER_NAV } from "@/shared/config/site";
 import { useSession } from "@/entities/session";
+import { useBasket } from "@/entities/basket";
 
 const ICONS = {
   user: UserIcon,
@@ -16,15 +17,21 @@ const ICONS = {
 interface SiteHeaderProps {
   // "storefront" — ünvan seçicisi + axtarış sahəsi əlavə olunur (mağaza səhifələri).
   variant?: "landing" | "storefront";
+  // Kateqoriya detalı kimi geniş `Container`-dan (bax `wide` prop-u) istifadə
+  // edən səhifələrdə header-in də aşağıdakı hissə ilə eyni sol/sağ kənarda
+  // olması üçün — digər səhifələr (standart 1200px) təsirlənmir.
+  wide?: boolean;
 }
 
-export function SiteHeader({ variant = "landing" }: SiteHeaderProps) {
+export function SiteHeader({ variant = "landing", wide = false }: SiteHeaderProps) {
   const { isAuthenticated, profile } = useSession();
+  const { count } = useBasket();
   const storefront = variant === "storefront";
 
   return (
     <header className="sticky top-0 z-40 border-b border-neutral-200 bg-white/90 backdrop-blur">
       <Container
+        wide={wide}
         className={`flex h-[88px] items-center gap-4 ${
           storefront ? "sm:gap-6" : "justify-between"
         }`}
@@ -78,9 +85,16 @@ export function SiteHeader({ variant = "landing" }: SiteHeaderProps) {
               <Link
                 key={item.label}
                 href={href}
-                className="flex items-center gap-2 text-[14px] font-normal leading-none tracking-normal text-[#2B3043] transition-opacity hover:opacity-70"
+                className="relative flex items-center gap-2 text-[14px] font-normal leading-none tracking-normal text-[#2B3043] transition-opacity hover:opacity-70"
               >
-                <Icon className="h-4 w-auto shrink-0" />
+                <span className="relative">
+                  <Icon className="h-4 w-auto shrink-0" />
+                  {item.icon === "basket" && count > 0 ? (
+                    <span className="absolute -right-2 -top-2 flex size-4 items-center justify-center rounded-full bg-leaf text-[10px] font-semibold text-white">
+                      {count}
+                    </span>
+                  ) : null}
+                </span>
                 <span className="hidden sm:inline">{item.label}</span>
               </Link>
             );
