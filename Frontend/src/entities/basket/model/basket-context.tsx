@@ -9,6 +9,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { useRouter } from "next/navigation";
 import { useSession } from "@/entities/session";
 import type { Product } from "@/entities/product";
 import {
@@ -40,15 +41,14 @@ function toLines(basket: BasketResponse): BasketLine[] {
   }));
 }
 
-// Girişli istifadəçi üçün səbət Basket API-sına tam güvənir (bax
-// Frontend/API.md) — hər əməliyyat server-ə gedir, cavabdakı tam siyahı ilə
-// state əvəzlənir (optimistic update yoxdur). Backend basket endpoint-lərinin
-// hamısında auth tələb etdiyindən (qonaq 401 alır) qonaq üçün səbət sadəcə
-// yaddaşda saxlanılır — checkout da onsuz da auth tələb etdiyi üçün bu hələlik
-// problem yaratmır (giriş edəndə qonaq səbəti sıfırlanır, server-in öz
-// səbəti ilə əvəzlənir).
+// Səbət Basket API-sına tam güvənir (bax Frontend/API.md) — hər əməliyyat
+// server-ə gedir, cavabdakı tam siyahı ilə state əvəzlənir (optimistic update
+// yoxdur). Backend basket endpoint-lərinin hamısı auth tələb etdiyindən qonaq
+// məhsulu səbətə əlavə edə bilməz — məhsulları görə bilir, amma "əlavə et"
+// klikləyəndə qeydiyyatdan keçsin deyə birbaşa /login-ə yönləndirilir.
 export function BasketProvider({ children }: { children: ReactNode }) {
   const { isAuthenticated } = useSession();
+  const router = useRouter();
   const [lines, setLines] = useState<BasketLine[]>([]);
 
   // Giriş vəziyyəti dəyişəndə (login/logout) səbət sıfırlanır — render
@@ -78,40 +78,19 @@ export function BasketProvider({ children }: { children: ReactNode }) {
   const addOne = useCallback(
     (product: Product) => {
       if (!isAuthenticated) {
-        setLines((prev) => {
-          const existing = prev.find((line) => line.product.id === product.id);
-          if (existing) {
-            return prev.map((line) =>
-              line.product.id === product.id
-                ? { ...line, quantity: line.quantity + 1 }
-                : line,
-            );
-          }
-          return [...prev, { product, quantity: 1 }];
-        });
+        router.push("/login");
         return;
       }
       addToBasket(product.id)
         .then((data) => setLines(toLines(data)))
         .catch(() => {});
     },
-    [isAuthenticated],
+    [isAuthenticated, router],
   );
 
   const removeOne = useCallback(
     (productId: number) => {
-      if (!isAuthenticated) {
-        setLines((prev) =>
-          prev
-            .map((line) =>
-              line.product.id === productId
-                ? { ...line, quantity: line.quantity - 1 }
-                : line,
-            )
-            .filter((line) => line.quantity > 0),
-        );
-        return;
-      }
+      if (!isAuthenticated) return;
       removeFromBasket(productId)
         .then((data) => setLines(toLines(data)))
         .catch(() => {});
@@ -121,10 +100,7 @@ export function BasketProvider({ children }: { children: ReactNode }) {
 
   const removeAll = useCallback(
     (productId: number) => {
-      if (!isAuthenticated) {
-        setLines((prev) => prev.filter((line) => line.product.id !== productId));
-        return;
-      }
+      if (!isAuthenticated) return;
       removeAllFromBasket(productId)
         .then((data) => setLines(toLines(data)))
         .catch(() => {});
@@ -133,10 +109,7 @@ export function BasketProvider({ children }: { children: ReactNode }) {
   );
 
   const clear = useCallback(() => {
-    if (!isAuthenticated) {
-      setLines([]);
-      return;
-    }
+    if (!isAuthenticated) return;
     clearBasketRequest()
       .then((data) => setLines(toLines(data)))
       .catch(() => {});

@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { Search } from "lucide-react";
 import { Container } from "@/shared/ui/container";
 import { BasketIcon, FavoritesIcon, UserIcon } from "@/shared/ui/icons";
 import { HEADER_NAV } from "@/shared/config/site";
 import { useSession } from "@/entities/session";
 import { useBasket } from "@/entities/basket";
+import { SiteSearch } from "./SiteSearch";
 
 const ICONS = {
   user: UserIcon,
@@ -57,21 +57,7 @@ export function SiteHeader({ variant = "landing", wide = false }: SiteHeaderProp
               </span>
             </Link>
 
-            <form className="relative flex min-w-0 flex-1" role="search">
-              <label htmlFor="site-search" className="sr-only">
-                Axtarış
-              </label>
-              <input
-                id="site-search"
-                type="search"
-                placeholder="Axtarış"
-                className="h-11 w-full rounded-xl bg-neutral-100 pl-4 pr-10 text-sm text-ink outline-none transition-colors placeholder:text-neutral-400 focus:bg-neutral-200/60"
-              />
-              <Search
-                aria-hidden
-                className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-neutral-400"
-              />
-            </form>
+            <SiteSearch />
           </>
         ) : null}
 

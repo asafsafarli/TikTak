@@ -23,3 +23,13 @@ export function getProducts({
     params: { category_id: categoryId, search, page, limit },
   });
 }
+
+// Tək məhsulun detalı — eyni auth+fallback naxışı. `is_favorite` sahəsini
+// (bax Frontend/API.md) qəsdən oxumuruq — favorit vəziyyəti tək mənbədən
+// (`entities/favorite`) idarə olunur ki, iki fərqli mənbə uyuşmasın.
+export function getProduct(id: number) {
+  return apiFetch<Product>(`/products/${id}`, {
+    auth: true,
+    redirectOnAuthFail: false,
+  });
+}
